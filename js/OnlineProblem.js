@@ -33,8 +33,12 @@ function OnlineProblem(graph, algo) {
 		
 		vertex.color = self.algo.assign(ov);
 
+		self.numberOfColors = Math.max(self.numberOfColors, vertex.color + 1);
+
 		return self.index++;
 	
 	}
+	
+	this.numberOfColors = 0;
 	
 }

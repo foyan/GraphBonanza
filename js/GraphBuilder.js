@@ -8,8 +8,8 @@ function GraphBuilder() {
 		return 0.5;
 	}
 	
-	this.getEdgeProbability = function(index) {
-		return 0.01;
+	this.getEdgeProbability = function(index1, index2) {
+		return 0.2;
 	} 
 
 	this.build = function() {
@@ -27,18 +27,15 @@ function GraphBuilder() {
 			graph.verteces.push(vertex);			
 		}
 		
-		graph.eachVertex(function (vertex) {
-			if (vertex.edges.length == 0) {
-				var otherShore = shores[(vertex.shore + 1) % 2];
-				var index = Math.floor(Math.random() * otherShore.length);
-				
-				var edge = new Edge(vertex, otherShore[index]);
-				vertex.edges.push(edge);
-				otherShore[index].edges.push(edge);
-				graph.edges.push(edge);
+		for (var i = 0; i < shores[0].length; i++) {
+			for (var j = 0; j < shores[1].length; j++) {
+				if (Math.random() < self.getEdgeProbability(i, j)) {
+					var edge = new Edge(shores[0][i], shores[1][j]);
+					graph.edges.push(edge);
+				}
 			}
-		});
-		
+		}
+				
 		return graph;
 
 	}

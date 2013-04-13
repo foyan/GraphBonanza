@@ -51,20 +51,25 @@ var colors = [
 	"#FFC300"
 ];
 
+var probem = null;
+
 function solve() {
 	
-	var problem = new OnlineProblem(graph, new FirstFitAlgo());
+	problem = new OnlineProblem(graph, new FirstFitAlgo());
 	
 	problem.start();
 	
-	step(problem);
+	//step(problem);
 	
-	//while (!problem.done()) {
-	//}
+	while (!problem.done()) {
+		step();
+	}
 		
+	si.draw();
+
 }
 
-function step(problem) {
+function step() {
 	var index = problem.step();
 	
 	si.iterNodes(function (node) {
@@ -73,18 +78,23 @@ function step(problem) {
 		node.assignedColor = graph.verteces[index].color;
 	}, ["#" + index]);
 
+}
+
+function stepThrough() {
+	step();
+
 	si.draw();
 
 	if (!problem.done()) {
 		setTimeout(function () {
-			step(problem);
+			stepThrough();
 		}, 1000);
 	}
 }
 
 function rearrange() {
 	si.iterNodes(function (node) {
-		node.y = node.attr.assignedColor * 20;
+		node.y = node.attr.assignedColor * 20 / problem.numberOfColors;
 	});	
 	si.draw();
 }
