@@ -1,48 +1,10 @@
 $(function () {
-				
+	var app = new App();
+	
+	var body = $("body").get(0);
+	ko.applyBindings(app, body);
 });
 
-var graph = null;
-
-var si = null;
-
-function newGraph() {
-	var builder = new GraphBuilder();
-	var space = $("#space").get(0);
-	si = si || sigma.init(space);
-	
-	si.emptyGraph();
-	
-	si.drawingProperties({
-        defaultLabelColor: '#ccc',
-        edgeColor: "white"//,
-        //defaultEdgeType: 'curve'
-      }).graphProperties({
-        minNodeSize: 5,
-        maxNodeSize: 5
-      });
-	
-	graph = builder.build();
-	
-	var shoreIndices = [0, 0];
-	for (var i = 0; i < graph.verteces.length; i++) {
-		var vertex = graph.verteces[i];
-		si.addNode("#" + i, {
-			label: "#" + i,
-			color: "white",
-			x: i, // shoreIndices[vertex.shore]++,
-			y: vertex.shore * 20
-		});
-	}
-	
-	for (var i = 0; i < graph.edges.length; i++) {
-		var edge = graph.edges[i];
-		si.addEdge(edge.vertex1.index + "#" + edge.vertex2.index, "#" + edge.vertex1.index, "#" + edge.vertex2.index);
-	}
-	
-	si.draw();
-	
-}
 
 var colors = [
 	"#2219B2",
@@ -51,7 +13,7 @@ var colors = [
 	"#FFC300"
 ];
 
-var probem = null;
+var problem = null;
 
 function solve() {
 	

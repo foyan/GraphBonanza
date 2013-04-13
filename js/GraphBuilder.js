@@ -2,7 +2,7 @@ function GraphBuilder() {
 
 	var self = this;
 	
-	this.vertexCount = 200;
+	this.vertexCount = ko.observable(100);
 	
 	this.getBalance = function(index) {
 		return 0.5;
@@ -18,7 +18,7 @@ function GraphBuilder() {
 		
 		var shores = [ [], [] ];
 		
-		for (var i = 0; i < self.vertexCount; i++) {
+		for (var i = 0; i < self.vertexCount(); i++) {
 			var vertex = new Vertex();
 			vertex.index = i;
 			vertex.shore = Math.random() < self.getBalance(i) ? 0 : 1;

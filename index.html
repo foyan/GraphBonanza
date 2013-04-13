@@ -11,6 +11,7 @@
 		
 		<script type="text/javascript" src="lib/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="lib/sigma.min.js"></script>
+		<script type="text/javascript" src="lib/knockout-2.2.1.js"></script>
 		
 		<script type="text/javascript" src="js/Graph.js"></script>
 		<script type="text/javascript" src="js/Vertex.js"></script>
@@ -19,6 +20,8 @@
 		<script type="text/javascript" src="js/OnlineVertex.js"></script>
 		<script type="text/javascript" src="js/OnlineProblem.js"></script>
 		<script type="text/javascript" src="js/FirstFitAlgo.js"></script>
+		<script type="text/javascript" src="js/Playground.js"></script>
+		<script type="text/javascript" src="js/App.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 	</head>
 	
@@ -26,13 +29,23 @@
 		
 		<div id="header">
 		
-			<h1>Graph Bonanza.</h1>
+			<div class="header-part title">Graph Bonanza.</div>
 			
-			<a href="#" onclick="newGraph();">New Graph</a> | <a href="#" onclick="solve();">Solve</a> | <a href="#" onclick="rearrange();">Rearrange</a>
-
+			<div class="header-part control">
+				<table>
+					<tr>
+						<td># Verteces:</td>
+						<td><input type="text" data-bind="value: builder.vertexCount" /></td>
+					</tr>
+				</table>
+			</div>
+			
+			<div style="clear: both"> </div>
+			
 		</div>
 		
-		<div id="content">
+		<div id="content" data-bind="with: playground">
+			<a href="#" data-bind="click: function () { $data.buildGraph(); $data.drawGraph();}">New Graph</a>
 			<div id="space" class="space">
 				
 			</div>

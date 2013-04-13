@@ -4,15 +4,39 @@ body {
 	color: white;
 }
 
-.space {
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
+#content {
 	border-radius: 4px;
 	background: #222;
 	width: 99%;
 	height: 700px;
+	border: 1px solid white;
+}
+
+#header {
+	clear: both;
+}
+
+.header-part {
+	float: left;
+	border-radius: 4px;
+	background: #222;
+	border: 1px solid white;
+	margin-right: 4px;
+	margin-bottom: 4px;
+}
+
+.title {
+	font-size: 2em;
+	font-weight: bold;
+	border: none;
+	background-color: transparent;
+}
+
+.space {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
 	top: 0;
 	left: 0;
-	border: 1px solid white;
+	height: 100%;
 }
