@@ -2,7 +2,7 @@ function GraphBuilder() {
 
 	var self = this;
 	
-	this.vertexCount = 100;
+	this.vertexCount = 200;
 	
 	this.getBalance = function(index) {
 		return 0.5;
