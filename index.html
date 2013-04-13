@@ -16,6 +16,7 @@
 		<script type="text/javascript" src="js/Graph.js"></script>
 		<script type="text/javascript" src="js/Vertex.js"></script>
 		<script type="text/javascript" src="js/Edge.js"></script>
+		<script type="text/javascript" src="js/UniformDistribution.js"></script>
 		<script type="text/javascript" src="js/GraphBuilder.js"></script>
 		<script type="text/javascript" src="js/OnlineVertex.js"></script>
 		<script type="text/javascript" src="js/OnlineProblem.js"></script>
@@ -34,8 +35,12 @@
 			<div class="header-part control">
 				<table>
 					<tr>
-						<td># Verteces:</td>
+						<td># verteces:</td>
 						<td><input type="text" data-bind="value: builder.vertexCount" /></td>
+					</tr>
+					<tr>
+						<td>Shore distribution:</td>
+						<td data-bind="text: builder.shoreDistribution().name"></td>
 					</tr>
 				</table>
 			</div>
@@ -45,7 +50,7 @@
 		</div>
 		
 		<div id="content" data-bind="with: playground">
-			<a href="#" data-bind="click: function () { $data.buildGraph(); $data.drawGraph();}">New Graph</a>
+			<a href="#" data-bind="click: function () { $data.buildGraph(); $data.drawGraph();}">New graph</a>
 			<div id="space" class="space">
 				
 			</div>

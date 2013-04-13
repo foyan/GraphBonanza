@@ -4,10 +4,12 @@ function GraphBuilder() {
 	
 	this.vertexCount = ko.observable(100);
 	
-	this.getBalance = function(index) {
-		return 0.5;
-	}
+	this.shoreDistributions = [
+		new UniformDistribution()
+	];
 	
+	this.shoreDistribution = ko.observable(this.shoreDistributions[0]);
+		
 	this.getEdgeProbability = function(index1, index2) {
 		return 0.2;
 	} 
@@ -21,7 +23,7 @@ function GraphBuilder() {
 		for (var i = 0; i < self.vertexCount(); i++) {
 			var vertex = new Vertex();
 			vertex.index = i;
-			vertex.shore = Math.random() < self.getBalance(i) ? 0 : 1;
+			vertex.shore = Math.random() < self.shoreDistribution().get(i, 0, self.vertexCount()) ? 0 : 1;
 			
 			shores[vertex.shore].push(vertex);
 			graph.verteces.push(vertex);			

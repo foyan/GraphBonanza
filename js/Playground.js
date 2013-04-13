@@ -37,7 +37,7 @@ function Playground(app) {
 			self.sigma.addNode("#" + i, {
 				label: "#" + i,
 				color: "white",
-				x: shoreIndices[vertex.shore]++,
+				x: i, //shoreIndices[vertex.shore]++,
 				y: vertex.shore * 10
 			});
 		}
