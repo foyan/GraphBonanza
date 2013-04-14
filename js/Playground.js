@@ -36,30 +36,59 @@ function Playground(app) {
 	}
 	
 	this.buildGraph = function () {
+		console.log(new Date() + ": Building...");
 		self.graph(self.app.builder.build());
+		console.log(new Date() + ": Built.");
 	}
 	
 	this.drawGraph = function () {
 		self.sigma = self.sigma || self.setupSigma($("#space").get(0));
 		self.sigma.emptyGraph();
+		
+		var wnd = {
+			start: 0,
+			end: 100
+		};
 
-	
-		var shoreIndices = [0, 0];
-		for (var i = 0; i < self.graph().verteces.length; i++) {
-			var vertex = self.graph().verteces[i];
-			self.sigma.addNode("#" + i, {
-				label: "#" + i,
+		self.sigma.addNode("head", {
+			label: "Head",
+			color: "gray",
+			x: wnd.start - 1,
+			y: 10
+		});
+		
+		self.sigma.addNode("tail", {
+			label: "Tail",
+			color: "gray",
+			x: wnd.end,
+			y: 10
+		});
+
+		self.graph().eachVertex(function (vertex) {
+			self.sigma.addNode("#" + vertex.index, {
+				label: "#" + vertex.index,
 				color: "white",
-				x: i, //shoreIndices[vertex.shore]++,
-				y: vertex.shore * 20,
-				hidden: 1
+				x: vertex.index,
+				y: vertex.shore * 20
 			});
-		}
+		}, wnd.start, wnd.end);
 
-		for (var i = 0; i < self.graph().edges.length; i++) {
-			var edge = self.graph().edges[i];
-			self.sigma.addEdge(edge.vertex1.index + "#" + edge.vertex2.index, "#" + edge.vertex1.index, "#" + edge.vertex2.index);
-		}
+		self.graph().eachVertex(function (vertex) {
+			if (vertex.shore == 0 || vertex.index < wnd.start || vertex.index >= wnd.end) {
+				for (var i = 0; i < vertex.friends.length; i++) {
+					var friend = vertex.friends[i];
+					
+					var friendId = "#" + friend.index;
+					if (friend.index < wnd.start) {
+						friendId = "head"
+					} else if (friend.index >= wnd.end) {
+						friendId = "tail"
+					}
+					
+					self.sigma.addEdge(vertex.index + "#" + friend.index, "#" + vertex.index, friendId);
+				}
+			}
+		}, wnd.start, wnd.end);
 		
 		self.sigma.draw();
 		

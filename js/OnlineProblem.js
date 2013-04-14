@@ -21,13 +21,10 @@ function OnlineProblem(graph, algo) {
 		
 		var vertex = self.graph.verteces[self.index];
 		var ov = new OnlineVertex(self.index);
-		for (var i = 0; i < vertex.edges.length; i++) {
-			var edge = vertex.edges[i];
-			if (edge.vertex1.index < self.index) {
-				ov.friendIndices.push(edge.vertex1.index);
-			}
-			if (edge.vertex2.index < self.index) {
-				ov.friendIndices.push(edge.vertex2.index);
+		for (var i = 0; i < vertex.friends; i++) {
+			var friend = vertex.friends[i];
+			if (friend.index < self.index) {
+				ov.friendIndices.push(friend.index);
 			}
 		}
 		

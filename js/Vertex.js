@@ -8,4 +8,6 @@ function Vertex() {
 	
 	this.index = null;
 	
+	this.friends = []; 
+	
 }
