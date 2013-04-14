@@ -10,6 +10,11 @@ function Playground(app) {
 	
 	this.colorCount = ko.observable(null);
 	
+	this.wnd = {
+		start: ko.observable(0),
+		end: ko.observable(100)
+	}
+	
 	this.colors = [
 		"#2219B2",
 		"#C10087",
@@ -45,22 +50,17 @@ function Playground(app) {
 		self.sigma = self.sigma || self.setupSigma($("#space").get(0));
 		self.sigma.emptyGraph();
 		
-		var wnd = {
-			start: 0,
-			end: 100
-		};
-
 		self.sigma.addNode("head", {
 			label: "Head",
 			color: "gray",
-			x: wnd.start - 1,
+			x: self.wnd.start() - 1,
 			y: 10
 		});
 		
 		self.sigma.addNode("tail", {
 			label: "Tail",
 			color: "gray",
-			x: wnd.end,
+			x: self.wnd.end(),
 			y: 10
 		});
 
@@ -71,7 +71,7 @@ function Playground(app) {
 				x: vertex.index,
 				y: vertex.shore * 20
 			});
-		}, wnd.start, wnd.end);
+		}, self.wnd.start(), self.wnd.end());
 		
 		var connectedToHead = {};
 		var connectedToTail = {};
@@ -81,13 +81,13 @@ function Playground(app) {
 				var friend = vertex.friends[i];
 									
 				var friendId = "#" + friend.index;
-				if (friend.index < wnd.start) {
+				if (friend.index < self.wnd.start()) {
 					if (connectedToHead[vertex.index]) {
 						continue;
 					}
 					connectedToHead[vertex.index] = true;
 					friendId = "head"
-				} else if (friend.index >= wnd.end) {
+				} else if (friend.index >= self.wnd.end()) {
 					if (connectedToTail[vertex.index]) {
 						continue;
 					}
@@ -99,7 +99,7 @@ function Playground(app) {
 				
 				self.sigma.addEdge(vertex.index + "#" + friend.index, "#" + vertex.index, friendId);
 			}
-		}, wnd.start, wnd.end);
+		}, self.wnd.start(), self.wnd.end());
 		
 		self.sigma.draw();
 		
@@ -136,5 +136,14 @@ function Playground(app) {
 			node.y = node.attr.assignedColor * 20 / self.colorCount();
 		});	
 	}
+	
+	this.changeWindow = function (offset) {
+		self.wnd.start(self.wnd.start() + offset);
+		self.wnd.end(self.wnd.end() + offset);
+	}
+	
+	this.windowDisplay = ko.computed(function () {
+		return "#" + self.wnd.start() + " – #" + self.wnd.end();
+	});
 	
 }

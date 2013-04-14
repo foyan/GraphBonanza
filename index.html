@@ -69,6 +69,11 @@
 			<a href="#" data-bind="click: function () { $data.buildGraph(); $data.drawGraph();}">New graph</a>
 			<a href="#" data-bind="click: function () { $data.solve(); $data.redraw();}, enabled: graph() != null">Solve</a>
 			<a href="#" data-bind="click: function () { $data.arrangeShores(); $data.redraw();}">Arrange shores</a>
+
+			<a href="#" data-bind="click: function () { $data.changeWindow(-100); $data.drawGraph();}"><<</a>
+			<a href="#" data-bind="click: function () { }, text: windowDisplay"></a>
+			<a href="#" data-bind="click: function () { $data.changeWindow(+100); $data.drawGraph();}">>></a></a>
+
 			<div id="space" class="space">
 				
 			</div>
