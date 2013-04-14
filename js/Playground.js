@@ -72,21 +72,32 @@ function Playground(app) {
 				y: vertex.shore * 20
 			});
 		}, wnd.start, wnd.end);
-
+		
+		var connectedToHead = {};
+		var connectedToTail = {};
+		
 		self.graph().eachVertex(function (vertex) {
-			if (vertex.shore == 0 || vertex.index < wnd.start || vertex.index >= wnd.end) {
-				for (var i = 0; i < vertex.friends.length; i++) {
-					var friend = vertex.friends[i];
-					
-					var friendId = "#" + friend.index;
-					if (friend.index < wnd.start) {
-						friendId = "head"
-					} else if (friend.index >= wnd.end) {
-						friendId = "tail"
+			for (var i = 0; i < vertex.friends.length; i++) {
+				var friend = vertex.friends[i];
+									
+				var friendId = "#" + friend.index;
+				if (friend.index < wnd.start) {
+					if (connectedToHead[vertex.index]) {
+						continue;
 					}
-					
-					self.sigma.addEdge(vertex.index + "#" + friend.index, "#" + vertex.index, friendId);
+					connectedToHead[vertex.index] = true;
+					friendId = "head"
+				} else if (friend.index >= wnd.end) {
+					if (connectedToTail[vertex.index]) {
+						continue;
+					}
+					connectedToTail[vertex.index] = true;
+					friendId = "tail"
+				} else if (vertex.shore == 1) {
+					continue;
 				}
+				
+				self.sigma.addEdge(vertex.index + "#" + friend.index, "#" + vertex.index, friendId);
 			}
 		}, wnd.start, wnd.end);
 		
@@ -121,6 +132,7 @@ function Playground(app) {
 	
 	this.arrangeShores = function () {
 		self.sigma.iterNodes(function (node) {
+			if (node.label != "Head" && node.label != "Tail")
 			node.y = node.attr.assignedColor * 20 / self.colorCount();
 		});	
 	}

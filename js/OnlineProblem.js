@@ -21,7 +21,7 @@ function OnlineProblem(graph, algo) {
 		
 		var vertex = self.graph.verteces[self.index];
 		var ov = new OnlineVertex(self.index);
-		for (var i = 0; i < vertex.friends; i++) {
+		for (var i = 0; i < vertex.friends.length; i++) {
 			var friend = vertex.friends[i];
 			if (friend.index < self.index) {
 				ov.friendIndices.push(friend.index);
