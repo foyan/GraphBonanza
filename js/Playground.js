@@ -2,7 +2,7 @@ function Playground(app) {
 	
 	var self = this;
 	
-	this.graph = null;
+	this.graph = ko.observable(null);
 	
 	this.sigma = null;
 		
@@ -36,7 +36,7 @@ function Playground(app) {
 	}
 	
 	this.buildGraph = function () {
-		self.graph = self.app.builder.build();
+		self.graph(self.app.builder.build());
 	}
 	
 	this.drawGraph = function () {
@@ -45,18 +45,19 @@ function Playground(app) {
 
 	
 		var shoreIndices = [0, 0];
-		for (var i = 0; i < self.graph.verteces.length; i++) {
-			var vertex = self.graph.verteces[i];
+		for (var i = 0; i < self.graph().verteces.length; i++) {
+			var vertex = self.graph().verteces[i];
 			self.sigma.addNode("#" + i, {
 				label: "#" + i,
 				color: "white",
 				x: i, //shoreIndices[vertex.shore]++,
-				y: vertex.shore * 20
+				y: vertex.shore * 20,
+				hidden: 1
 			});
 		}
 
-		for (var i = 0; i < self.graph.edges.length; i++) {
-			var edge = self.graph.edges[i];
+		for (var i = 0; i < self.graph().edges.length; i++) {
+			var edge = self.graph().edges[i];
 			self.sigma.addEdge(edge.vertex1.index + "#" + edge.vertex2.index, "#" + edge.vertex1.index, "#" + edge.vertex2.index);
 		}
 		
@@ -66,7 +67,7 @@ function Playground(app) {
 	
 	this.redraw = function () {
 		
-		self.graph.eachVertex(function (vertex) {
+		self.graph().eachVertex(function (vertex) {
 			self.sigma.iterNodes(function (node) {
 				node.color = self.colors[vertex.color % self.colors.length];
 				node.label = "#" + vertex.index + ". color: " + vertex.color + ", revealed friends: ";
@@ -78,7 +79,7 @@ function Playground(app) {
 	}
 	
 	this.solve = function () {
-		var problem = new OnlineProblem(self.graph, new FirstFitAlgo());
+		var problem = new OnlineProblem(self.graph(), new FirstFitAlgo());
 		
 		problem.start();
 		

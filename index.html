@@ -46,6 +46,18 @@
 							<a href="#" data-bind="text: builder.shoreDistribution().name, click: function () {}" />
 						</td>
 					</tr>
+					<tr>
+						<td>Shore 1 edge distribution:</td>
+						<td>
+							<a href="#" data-bind="text: builder.shore1EdgeDistribution().name, click: function () {}" />
+						</td>
+					</tr>
+					<tr>
+						<td>Shore 2 edge distribution:</td>
+						<td>
+							<a href="#" data-bind="text: builder.shore2EdgeDistribution().name, click: function () {}" />
+						</td>
+					</tr>
 				</table>
 			</div>
 			
@@ -55,7 +67,7 @@
 		
 		<div id="content" data-bind="with: playground">
 			<a href="#" data-bind="click: function () { $data.buildGraph(); $data.drawGraph();}">New graph</a>
-			<a href="#" data-bind="click: function () { $data.solve(); $data.redraw();}">Solve</a>
+			<a href="#" data-bind="click: function () { $data.solve(); $data.redraw();}, enabled: graph() != null">Solve</a>
 			<a href="#" data-bind="click: function () { $data.arrangeShores(); $data.redraw();}">Arrange shores</a>
 			<div id="space" class="space">
 				
