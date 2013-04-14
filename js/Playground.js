@@ -108,11 +108,13 @@ function Playground(app) {
 	this.redraw = function () {
 		
 		self.graph().eachVertex(function (vertex) {
-			self.sigma.iterNodes(function (node) {
-				node.color = self.colors[vertex.color % self.colors.length];
-				node.label = "#" + vertex.index + ". color: " + vertex.color + ", revealed friends: ";
-				node.assignedColor = vertex.color;
-			}, ["#" + vertex.index]);
+			if (vertex.index >= self.wnd.start() && vertex.index < self.wnd.end()) {
+				self.sigma.iterNodes(function (node) {
+					node.color = self.colors[vertex.color % self.colors.length];
+					node.label = "#" + vertex.index + ". color: " + vertex.color + ", revealed friends: ";
+					node.assignedColor = vertex.color;
+				}, ["#" + vertex.index]);
+			}
 		});
 		
 		self.sigma.draw();
