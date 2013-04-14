@@ -26,7 +26,7 @@ function Playground(app) {
 		
 		si.drawingProperties({
 			defaultLabelColor: '#ccc',
-			edgeColor: "source"
+			edgeColor: "white"
 		}).graphProperties({
 			minNodeSize: 4,
 			maxNodeSize: 4

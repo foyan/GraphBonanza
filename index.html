@@ -8,8 +8,10 @@
 		<title>Graph Bonanza.</title>
 		
 		<link rel="stylesheet" type="text/css" href="css/standard.css">
+		<link href="lib/jquery-ui-1.10.2.custom/css/ui-darkness/jquery-ui-1.10.2.custom.css" rel="stylesheet">
 		
 		<script type="text/javascript" src="lib/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="lib/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.js"></script>
 		<script type="text/javascript" src="lib/sigma.min.js"></script>
 		<script type="text/javascript" src="lib/knockout-2.2.1.js"></script>
 		
@@ -30,17 +32,19 @@
 		
 		<div id="header">
 		
-			<div class="header-part title">Graph Bonanza.</div>
+			<div class="header-part title">Graph<br/>Bonanza.</div>
 			
 			<div class="header-part control">
 				<table>
 					<tr>
 						<td># verteces:</td>
-						<td><input type="text" data-bind="value: builder.vertexCount" /></td>
+						<td><input type="text" class="text ui-widget-content ui-corner-all" data-bind="value: builder.vertexCount" /></td>
 					</tr>
 					<tr>
 						<td>Shore distribution:</td>
-						<td data-bind="text: builder.shoreDistribution().name"></td>
+						<td>
+							<a href="#" data-bind="text: builder.shoreDistribution().name, click: function () {}" />
+						</td>
 					</tr>
 				</table>
 			</div>
