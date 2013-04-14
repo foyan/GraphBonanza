@@ -8,12 +8,25 @@ function Playground(app) {
 		
 	this.app = app;
 	
+	this.colorCount = ko.observable(null);
+	
+	this.colors = [
+		"#2219B2",
+		"#C10087",
+		"#B1F100",
+		"#FFC300",
+		"#7872D8",
+		"#7D0057",
+		"#91B52D",
+		"#BF9E30"
+	];
+
 	this.setupSigma = function (space) {
 		var si = sigma.init(space);
 		
 		si.drawingProperties({
 			defaultLabelColor: '#ccc',
-			edgeColor: "white"
+			edgeColor: "source"
 		}).graphProperties({
 			minNodeSize: 4,
 			maxNodeSize: 4
@@ -38,7 +51,7 @@ function Playground(app) {
 				label: "#" + i,
 				color: "white",
 				x: i, //shoreIndices[vertex.shore]++,
-				y: vertex.shore * 10
+				y: vertex.shore * 20
 			});
 		}
 
@@ -49,6 +62,37 @@ function Playground(app) {
 		
 		self.sigma.draw();
 		
+	}
+	
+	this.redraw = function () {
+		
+		self.graph.eachVertex(function (vertex) {
+			self.sigma.iterNodes(function (node) {
+				node.color = self.colors[vertex.color % self.colors.length];
+				node.label = "#" + vertex.index + ". color: " + vertex.color + ", revealed friends: ";
+				node.assignedColor = vertex.color;
+			}, ["#" + vertex.index]);
+		});
+		
+		self.sigma.draw();
+	}
+	
+	this.solve = function () {
+		var problem = new OnlineProblem(self.graph, new FirstFitAlgo());
+		
+		problem.start();
+		
+		while (!problem.done()) {
+			problem.step();
+		}
+		
+		self.colorCount(problem.colorCount);
+	}
+	
+	this.arrangeShores = function () {
+		self.sigma.iterNodes(function (node) {
+			node.y = node.attr.assignedColor * 20 / self.colorCount();
+		});	
 	}
 	
 }
