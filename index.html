@@ -66,13 +66,13 @@
 		</div>
 		
 		<div id="content" data-bind="with: playground">
-			<a href="#" data-bind="click: function () { $data.buildGraph(); $data.drawGraph();}">New graph</a>
-			<a href="#" data-bind="click: function () { $data.solve(); $data.redraw();}, enabled: graph() != null">Solve</a>
-			<a href="#" data-bind="click: function () { $data.arrangeShores(); $data.redraw();}">Arrange shores</a>
+			<a href="#" data-bind="click: function () { $data.buildGraph(); $data.drawGraph();}, text: 'New graph'"></a>
+			<a href="#" data-bind="click: function () { $data.solve(); $data.redraw();}, enabled: graph() != null, text: 'Solve. ' + colorCountDisplay()">Solve</a>
+			<a href="#" data-bind="click: function () { $data.arrangeShores(); $data.redraw();}, text: 'Arrange on shores'"></a>
 
-			<a href="#" data-bind="click: function () { $data.changeWindow(-100); $data.drawGraph();}"><<</a>
+			<a href="#" data-bind="click: function () { $data.changeWindow(-100); $data.drawGraph();}, text: '<<'"></a>
 			<a href="#" data-bind="click: function () { }, text: windowDisplay"></a>
-			<a href="#" data-bind="click: function () { $data.changeWindow(+100); $data.drawGraph();}">>></a></a>
+			<a href="#" data-bind="click: function () { $data.changeWindow(+100); $data.drawGraph();}, text: '>>'"></a>
 
 			<div id="space" class="space">
 				

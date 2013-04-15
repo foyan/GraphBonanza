@@ -6,8 +6,8 @@ function GraphBuilder() {
 
 	this.shoreDistributions = [new UniformDistribution(0.5)];
 
-	this.shore1EdgeDistributions = [new UniformDistribution(0.35)];
-	this.shore2EdgeDistributions = [new UniformDistribution(0.11)];
+	this.shore1EdgeDistributions = [new UniformDistribution(0.01)];
+	this.shore2EdgeDistributions = [new UniformDistribution(0.01)];
 
 	this.shoreDistribution = ko.observable(this.shoreDistributions[0]);
 	this.shore1EdgeDistribution = ko.observable(this.shore1EdgeDistributions[0]);

@@ -10,6 +10,10 @@ function Playground(app) {
 	
 	this.colorCount = ko.observable(null);
 	
+	this.colorCountDisplay = ko.computed(function () {
+		return "# colors: " + (self.colorCount() ? self.colorCount() : "?");
+	});
+	
 	this.wnd = {
 		start: ko.observable(0),
 		end: ko.observable(100)
@@ -25,6 +29,13 @@ function Playground(app) {
 		"#91B52D",
 		"#BF9E30"
 	];
+	
+	this.getVertexColor = function (vertex) {
+		if (vertex.color == -1) {
+			return "white";
+		}
+		return self.colors[vertex.color % self.colors.length];
+	}
 
 	this.setupSigma = function (space) {
 		var si = sigma.init(space);
@@ -67,9 +78,10 @@ function Playground(app) {
 		self.graph().eachVertex(function (vertex) {
 			self.sigma.addNode("#" + vertex.index, {
 				label: "#" + vertex.index,
-				color: "white",
 				x: vertex.index,
-				y: vertex.shore * 20
+				y: vertex.shore * 20,
+				assignedColor: vertex.color,
+				color: self.getVertexColor(vertex)
 			});
 		}, self.wnd.start(), self.wnd.end());
 		
@@ -79,6 +91,8 @@ function Playground(app) {
 		self.graph().eachVertex(function (vertex) {
 			for (var i = 0; i < vertex.friends.length; i++) {
 				var friend = vertex.friends[i];
+						
+				var edgeColor = "white";
 									
 				var friendId = "#" + friend.index;
 				if (friend.index < self.wnd.start()) {
@@ -86,18 +100,20 @@ function Playground(app) {
 						continue;
 					}
 					connectedToHead[vertex.index] = true;
-					friendId = "head"
+					friendId = "head";
+					edgeColor = "gray";
 				} else if (friend.index >= self.wnd.end()) {
 					if (connectedToTail[vertex.index]) {
 						continue;
 					}
 					connectedToTail[vertex.index] = true;
-					friendId = "tail"
+					friendId = "tail";
+					edgeColor = "gray";
 				} else if (vertex.shore == 1) {
 					continue;
 				}
 				
-				self.sigma.addEdge(vertex.index + "#" + friend.index, "#" + vertex.index, friendId);
+				self.sigma.addEdge(vertex.index + "#" + friend.index, "#" + vertex.index, friendId, { color: edgeColor });
 			}
 		}, self.wnd.start(), self.wnd.end());
 		

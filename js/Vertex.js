@@ -6,6 +6,8 @@ function Vertex() {
 	
 	this.index = null;
 	
-	this.friends = []; 
+	this.friends = [];
+	
+	this.color = -1;
 	
 }
