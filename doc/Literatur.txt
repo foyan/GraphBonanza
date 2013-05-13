@@ -1,0 +1,7 @@
+Literatur
+
+http://svitsrv25.epfl.ch/R-doc/library/sna/html/rgraph.html
+http://www.cs.cornell.edu/courses/cs6850/2008fa/random-graphs.pdf
+http://en.wikipedia.org/wiki/Degree_distribution
+http://en.wikipedia.org/wiki/Random_graph
+http://dl.acm.org/citation.cfm?id=1951406
