@@ -16,12 +16,12 @@ function AlgoWithAdvice(maxColorCount, adviceCount, oracle) {
 		
 		var r = {};
 		for (var i = 0; i < vertex.friendIndices.length; i++) {
-			r[self.usedColors[vertex.friendIndices]] = true;
+			r["_" + self.usedColors[vertex.friendIndices[i]]] = true;
 		}
 		
 		var gap = -1;
-		for (var i = 0; i < self.maxColorCount() -1; i++) {
-			if (!r[i]) {
+		for (var i = 0; i < self.maxColorCount(); i++) {
+			if (!r["_" + i]) {
 				gap = i;
 				break;
 			}
@@ -33,12 +33,14 @@ function AlgoWithAdvice(maxColorCount, adviceCount, oracle) {
 			c = gap;
 		} else if (gap == self.maxColorCount() - 1 && r[self.maxColorCount() - 2]) {
 			c = gap;
-		} else if  (gap < self.maxColorCount()) {
+		} else if  (gap < self.maxColorCount()-2) {
 			c = gap;
 		} else {
 			self.adviceCount(self.adviceCount()+1);
 			c = self.maxColorCount() - 2 + self.oracle.ask(vertex);
 		}
+		
+		console.log("#" + vertex.index + ": " + c);
 		
 		self.usedColors[vertex.index] = c;
 		return c;

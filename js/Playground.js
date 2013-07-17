@@ -10,9 +10,17 @@ function Playground(app) {
 	
 	this.colorCount = ko.observable(null);
 	
-	this.maxColorCount = ko.observable(3);
+	this.maxColorCount = ko.observable(4);
 	
 	this.adviceCount = ko.observable(0);
+		
+		
+	this.upperAdviceBound = ko.computed(function () {
+		if (!self.graph()) {
+			return 0;
+		}
+		return Math.ceil(self.graph().verteces.length / Math.sqrt(Math.pow(2, self.maxColorCount() - 1)));
+	});
 		
 	this.wnd = {
 		start: ko.observable(0),
