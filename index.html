@@ -37,26 +37,21 @@
 			<div class="header-part control">
 				<table>
 					<tr>
-						<td># verteces:</td>
-						<td><input type="text" class="text ui-widget-content ui-corner-all" data-bind="value: builder.vertexCount" /></td>
-					</tr>
-					<tr>
-						<td>Shore distribution:</td>
-						<td>
-							<a href="#" data-bind="text: builder.shoreDistribution().name, click: function () {}" />
+						<td colspan="2">
+							<strong>Gilbert model</strong>
 						</td>
 					</tr>
 					<tr>
-						<td>Shore 1 edge distribution:</td>
-						<td>
-							<a href="#" data-bind="text: builder.shore1EdgeDistribution().name, click: function () {}" />
-						</td>
+						<td># vertices:</td>
+						<td>n = <input type="text" class="text ui-widget-content ui-corner-all" data-bind="value: builder.vertexCount" /></td>
 					</tr>
 					<tr>
-						<td>Shore 2 edge distribution:</td>
-						<td>
-							<a href="#" data-bind="text: builder.shore2EdgeDistribution().name, click: function () {}" />
-						</td>
+						<td>Probability:</td>
+						<td>p = <input type="text" class="text ui-widget-content ui-corner-all" data-bind="value: builder.probability" /></td>
+					</tr>
+					<tr>
+						<td>Shore balance:</td>
+						<td><input type="text" class="text ui-widget-content ui-corner-all" data-bind="value: builder.shoreBalance" /></td>
 					</tr>
 				</table>
 			</div>
