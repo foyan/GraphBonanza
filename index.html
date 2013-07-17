@@ -22,7 +22,9 @@
 		<script type="text/javascript" src="js/GraphBuilder.js"></script>
 		<script type="text/javascript" src="js/OnlineVertex.js"></script>
 		<script type="text/javascript" src="js/OnlineProblem.js"></script>
+		<script type="text/javascript" src="js/Oracle.js"></script>
 		<script type="text/javascript" src="js/FirstFitAlgo.js"></script>
+		<script type="text/javascript" src="js/AlgoWithAdvice.js"></script>
 		<script type="text/javascript" src="js/Playground.js"></script>
 		<script type="text/javascript" src="js/App.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
@@ -56,13 +58,54 @@
 				</table>
 			</div>
 			
+			<div class="header-part control" data-bind="with: playground">
+				<table>
+					<tr>
+						<td colspan="2">
+							<strong>First fit algo</strong>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<a href="#" data-bind="click: function () { $data.solve(new FirstFitAlgo()); $data.redraw();}, enabled: graph() != null">Solve</a>
+						</td>
+					</tr>
+					<tr>
+						<td># colors used:</td>
+						<td data-bind="text: colorCount"></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="header-part control" data-bind="with: playground">
+				<table>
+					<tr>
+						<td colspan="2">
+							<strong>Algo with advice</strong>
+						</td>
+					</tr>
+					<tr>
+						<td>Max. # colors used:</td>
+						<td data-bind="text: maxColorCount"></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<a href="#" data-bind="click: function () { $data.solve(new AlgoWithAdvice(maxColorCount, adviceCount, new Oracle($data.graph()))); $data.redraw();}, enabled: graph() != null">Solve</a>
+						</td>
+					</tr>
+					<tr>
+						<td># advice bits asked:</td>
+						<td data-bind="text: adviceCount"></td>
+					</tr>
+				</table>
+			</div>
+
 			<div style="clear: both"> </div>
 			
 		</div>
 		
 		<div id="content" data-bind="with: playground">
 			<a href="#" data-bind="click: function () { $data.buildGraph(); $data.drawGraph();}, text: 'New graph'"></a>
-			<a href="#" data-bind="click: function () { $data.solve(); $data.redraw();}, enabled: graph() != null, text: 'Solve. ' + colorCountDisplay()">Solve</a>
 			<a href="#" data-bind="click: function () { $data.arrangeShores(); $data.redraw();}, text: 'Arrange on shores'"></a>
 
 			<a href="#" data-bind="click: function () { $data.changeWindow(-100); $data.drawGraph();}, text: '<<'"></a>

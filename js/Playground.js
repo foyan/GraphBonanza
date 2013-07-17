@@ -10,10 +10,10 @@ function Playground(app) {
 	
 	this.colorCount = ko.observable(null);
 	
-	this.colorCountDisplay = ko.computed(function () {
-		return "# colors: " + (self.colorCount() ? self.colorCount() : "?");
-	});
+	this.maxColorCount = ko.observable(3);
 	
+	this.adviceCount = ko.observable(0);
+		
 	this.wnd = {
 		start: ko.observable(0),
 		end: ko.observable(100)
@@ -79,7 +79,7 @@ function Playground(app) {
 			self.sigma.addNode("#" + vertex.index, {
 				label: "#" + vertex.index,
 				x: vertex.index,
-				y: vertex.shore * 20,
+				y: vertex.shore * 15,
 				assignedColor: vertex.color,
 				color: self.getVertexColor(vertex)
 			});
@@ -136,8 +136,8 @@ function Playground(app) {
 		self.sigma.draw();
 	}
 	
-	this.solve = function () {
-		var problem = new OnlineProblem(self.graph(), new FirstFitAlgo());
+	this.solve = function (algo) {
+		var problem = new OnlineProblem(self.graph(), algo);
 		
 		problem.start();
 		
