@@ -5,3 +5,6 @@ http://www.cs.cornell.edu/courses/cs6850/2008fa/random-graphs.pdf
 http://en.wikipedia.org/wiki/Degree_distribution
 http://en.wikipedia.org/wiki/Random_graph
 http://dl.acm.org/citation.cfm?id=1951406
+http://www.edbt.org/Proceedings/2011-Uppsala/papers/edbt/a30-nobari.pdf
+http://www.google.ch/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CC8QFjAA&url=http%3A%2F%2Fwww.dmtcs.org%2Fdmtcs-ojs%2Findex.php%2Fproceedings%2Farticle%2Fdownload%2FdmAG0133%2F1710&ei=2vnmUY_XKY6Q7Abs2IHwAQ&usg=AFQjCNHXOciiKy1HLd_EsJ0vxDo0ddooMg&sig2=EfRz0LQ29RebENmtrdj6ww&bvm=bv.49405654,d.bGE
+http://people.math.gatech.edu/~trotter/papers/77-olcbrief.pdf

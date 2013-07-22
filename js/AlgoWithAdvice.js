@@ -29,15 +29,19 @@ function AlgoWithAdvice(maxColorCount, adviceCount, oracle) {
 		
 		var c;
 		
-		if (gap == self.maxColorCount() - 2 && r[self.maxColorCount() - 1]) {
+		if (gap < self.maxColorCount()-2) {
 			c = gap;
-		} else if (gap == self.maxColorCount() - 1 && r[self.maxColorCount() - 2]) {
+			console.log("#" + vertex.index + ": gap " + gap + " < k-1 => " + c);
+		} else if (gap == self.maxColorCount() - 2 && r["_" + (self.maxColorCount() - 1)]) {
 			c = gap;
-		} else if  (gap < self.maxColorCount()-2) {
+			console.log("#" + vertex.index + ": gap " + gap + " = k-1, k in friends => " + c);
+		} else if (gap == self.maxColorCount() - 1 && r["_" + (self.maxColorCount() - 2)]) {
 			c = gap;
+			console.log("#" + vertex.index + ": gap " + gap + " = k, k-1 in friends => " + c);
 		} else {
 			self.adviceCount(self.adviceCount()+1);
 			c = self.maxColorCount() - 2 + self.oracle.ask(vertex);
+			console.log("#" + vertex.index + ": gap " + gap + " = ?, asking for advice => " + c);
 		}
 		
 		console.log("#" + vertex.index + ": " + c);
