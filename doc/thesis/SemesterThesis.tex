@@ -36,6 +36,8 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{listings}
+\usepackage{tikz}
+\usepackage{pgfplots}
 % These packages are all incorporated in the memoir class to one degree or another...
 
 \usepackage{listings}
@@ -132,14 +134,17 @@ Eine weitere Folge des obengenannten Unterschieds manifestiert sich darin, dass 
 Eine gängige Möglichkeit, dieses Problem zu lösen, ist die von Sleator und Tarjan eingeführte {\it Competitive Ratio} \cite{Sleator, BKK}, welche im Grunde genommen das Verhältnis zwischen den Kosten der optimalen Lösung und deren des zu untersuchenden Online-Algorithmus ausdrückt \cite{BKK}. Da die Qualität der Lösung eines Online-Algorithmus wesentlich von der Beschaffenheit der Eingabe abhängt, wird dabei vom jeweils schlechtestmöglichen Fall ausgegangen \cite{Trevisan}.
 
 \bigskip
-Formal kann die Competitive Ratio folgendermassen definiert werden: Sei $\operatorname{opt}(I)$ die optimale Lösung eines konkreten Online-Problems für eine jeweilige Eingabe $I$. Seien ferner $\mathcal{S}$ alle möglichen Lösungen (mit $\operatorname{opt}(I) \in \mathcal{S}$), $A(I) \in \mathcal{S}$ diejenige Lösung, welche der Online-Algorithmus zu diesem Problem liefern kann, und $C : \mathcal{S} \rightarrow \mathbb{R}$ die Kosten für die jeweilige Lösung.
+Formal kann die Competitive Ratio folgendermassen definiert werden: Sei $\operatorname{opt}(I)$ die optimale Lösung eines konkreten Online-Problems für eine Sequenz aus Teileingaben $I$. $\mathcal{I}$ sei die Menge aller möglicher solcher Sequenzen. Seien ferner $\mathcal{S}$ alle möglichen Lösungen (mit $\operatorname{opt}(I) \in \mathcal{S}$), $A(I) \in \mathcal{S}$ diejenige Lösung, welche der Online-Algorithmus zu diesem Problem liefern kann, und $C : \mathcal{S} \rightarrow \mathbb{R}$ die Kosten für die jeweilige Lösung.
 
 \bigskip
 Ein Online-Algorithmus wird nun als {\it $c$-kompetitiv} bezeichnet, wenn es Konstanten $c \ge 0$ und $\alpha$ gibt, sodass für sämtliche mögliche Eingaben $I$
 \[
 C(A(I)) \le c\cdot C(\operatorname{opt}(I)) + \alpha
 \]
-gilt \cite{BKK}.
+gilt \cite{BKK}, und die Competitive Ratio wäre ergo
+\[
+c = \max_{I \in \mathcal{I}} \left\{ \frac {C(A(I))}{C(\operatorname{opt}(I))} \right\}.
+\]
 
 \section{Das {\sc SkiRental}-Problem}
 
@@ -148,7 +153,7 @@ Die Competitive Ratio lässt sich durch das wohlbekannte {\sc SkiRental}-Problem
 Angenommen, der Kauf eines Paars Ski kostet CHF 500, die Miete äquivalenter Skis für ein Wochenende hingegen CHF 50.\footnote{In der Realität wesentliche Aspekte wie Preisveränderungen über die Zeit, veränderte Qualitätsansprüche und Abnützung der Skis sollen bei dieser Betrachtung vernachlässigt werden.} Es ist nun einfach auszurechnen, dass sich der Kauf der Skis vor dem ersten Wochenende nur lohnen würde, wenn wir an mindestens 10 Wochenenden Skifahren gehen würden.
 
 \bigskip
-Da wir das aber nicht wissen, sind wir quasi der Online-Algorithmus, der für jede Teileingabe (sprich für jedes geplante Skiwochenende) sofort die Frage nach Kauf oder Miete beantworten muss. Die einzige Eingabe für den Algorithmus ist jeweils die Anzahl an vergangenen Skiwochenenden (der Einfachheit halber inklusive des aktuellen). Wir bezeichnen diese Eingabe hier als $i$.
+Da wir das aber nicht wissen, sind wir quasi der Online-Algorithmus, der für jede Teileingabe (sprich für jedes geplante Skiwochenende) sofort die Frage nach Kauf oder Miete beantworten muss. Die Teileingabe für den Algorithmus ist jeweils die Anzahl an vergangenen Skiwochenenden.
 
 Die oben besprochene Eigenschaft der potenziellen Suboptimalität der Entscheidungen wird beim zehnten solchen Wochenende augenscheinlich, wenn bei den vorangegangen Wochenenden die Entscheidung jeweils auf Mieten gefallen sein sollte.
 
@@ -156,8 +161,101 @@ Die oben besprochene Eigenschaft der potenziellen Suboptimalität der Entscheidu
 Bezeichne $t$ nun dasjenige Wochenende, an welchem wir uns dafür entscheiden, die Skis zu kaufen. Wir schauen uns die folgenden Fälle an:
 
 \begin{itemize}
-\item Für $t = 1$ gilt, dass 
+\item Für $t = 1$ gilt, dass $A(I) = 500$, denn wir kaufen ja gleich beim ersten Mal. Die Competitive Ratio $c$ hingegen liegt bei $10$, da wir im schlechtesten Fall nur dieses eine Mal Skifahren gehen -- es gälte also $\operatorname{opt}(I) = 50$.
+
+\item Für $t = 2$ gilt, dass $A(I) = 550$, denn wir mieten beim ersten (CHF 50) und kaufen beim zweiten Mal (CHF 500). Die Competitive Ratio $c$ liegt bei $5.5$, da wir im schlechtesten Fall nur diese zwei Male Skifahren gehen -- optimal wäre zwei Mal mieten, also  $\operatorname{opt}(I) = 50$.
+
+\item Für $t = 10$ gilt, dass $A(I) = 950$, denn wir mieten die ersten neun Male (CHF 450) und kaufen beim zehnten Mal (CHF 500). Für die optimale Lösung spielt es keine Rolle, ob gemietet oder gekauft wird, also ist $\operatorname{opt}(I) = 500$. Dies ergibt eine Competitive Ratio von $c = 1.9$.
+
+\item Für $t = 11$ gilt, dass $A(I) = 1000$, denn wir mieten die ersten zehn Male (CHF 500) und kaufen beim elften Mal (CHF 500). Die Competitive Ratio $c$ liegt bei $c = 2$, da es optimal wäre, gleich beim ersten Mal die Skis zu kaufen (CHF 500).
 \end{itemize}
+
+Der Verlauf von $\operatorname{opt}(I)$ und $A(I)$ ist in Abbildung \ref{fig.skirental} skizziert, Abbildung \ref{fig.skirental.c} zeigt $c$ in Abhängigkeit von $t$.
+
+\begin{figure}
+\caption{Verlauf von Lösung und Optimum für SkiRental}
+\label{fig.skirental}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[ 
+    xlabel=$t$,
+    ylabel={Kosten},
+	legend pos=north west
+  ] 
+    \addplot coordinates {
+		(1,50)
+		(2,100)
+		(3,150)
+		(4,200)
+		(5,250)
+		(6,300)
+		(7,350)
+		(8,400)
+		(9,450)
+		(10,500)
+		(11,500)
+		(12,500)
+		(13,500)
+	};
+	\addlegendentry{$\operatorname{opt}(I)$}
+    \addplot coordinates {
+		(1,500)
+		(2,550)
+		(3,600)
+		(4,650)
+		(5,700)
+		(6,750)
+		(7,800)
+		(8,850)
+		(9,900)
+		(10,950)
+		(11,1000)
+		(12,1050)
+		(13,1100)
+	};
+	\addlegendentry{$A(I)$}
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\caption{Verlauf der Competitive Ratio für SkiRental}
+\label{fig.skirental.c}
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[ 
+    xlabel=$t$,
+    ylabel={$c(t)$},
+	legend pos=north west
+  ] 
+    \addplot coordinates {
+		(1,10)
+		(2,5.5)
+		(3,4)
+		(4,3.25)
+		(5,2.8)
+		(6,2.5)
+		(7,2.2857142857)
+		(8,2.125)
+		(9,2)
+		(10,1.9)
+		(11,2)
+		(12,2.1)
+		(13,2.2)
+	};
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+\end{figure}
+
+Allgemein kann die Competitive Ratio für dieses Problem (mit allgemeinen Kosten $b$ für den Kauf bzw. $r$ für die Miete) beschrieben werden als
+\[
+	c_t = \begin{cases}
+		\frac{b+(t-1)\cdot r}{t\cdot r}, & \text{wenn } r\cdot t \le b \\
+		\frac{b+(t-1)\cdot r}{b}, & \text{sonst}
+	\end{cases}
+\]
 
 \section{Zelluläre Automaten}
 
