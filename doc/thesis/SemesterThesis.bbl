@@ -1,0 +1,21 @@
+\begin{thebibliography}{1}
+
+\bibitem{BKK}
+Hans-Joachim Böckenhauer, Dennis Komm, Rastislav Královič, Richard
+  Královič, and Tobias Mömke.
+\newblock On the advice complexity of online problems.
+\newblock In Yingfei Dong, Ding-Zhu Du, and Oscar Ibarra, editors, {\em
+  Algorithms and Computation}, volume 5878 of {\em Lecture Notes in Computer
+  Science}, pages 331--340. Springer Berlin Heidelberg, 2009.
+
+\bibitem{Sleator}
+Daniel~D. Sleator and Robert~E. Tarjan.
+\newblock Amortized efficiency of list update and paging rules.
+\newblock {\em Commun. ACM}, 28(2):202--208, February 1985.
+
+\bibitem{Trevisan}
+Luca Trevisan.
+\newblock Cs261: Optimization, lecture 17.
+\newblock \url{http://theory.stanford.edu/~trevisan/cs261/lecture17.pdf}, 2011.
+
+\end{thebibliography}
