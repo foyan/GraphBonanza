@@ -290,7 +290,11 @@ Für unser {\sc SkiRental}-Problem ist die Antwort denkbar trivial: Es ist vollk
 {\sc SkiRental} ist insofern speziell, als dass dem ganzen Leben (und damit auch der Freizeitplanung) nichtdeterministische Aspekte innewohnen; aus diesem Grunde wird die benötigte Information von keiner Instanz geliefert werden können. Auf der anderen Seite sind aber durchaus Probleme denkbar, welche eigentlich Online-Probleme sind (oder aus praktischen Gründen von Online-Algorithmen gelöst werden), die Qualität der Resultat aber nachhaltig verbessert werden könnte, wenn zusätzliche Offline-Informationen aus der gesamten Eingabe herangezogen werden könnten. Deren Beschaffung könnte mit derart hohen Kosten verbunden sein, dass die Bestrebung wäre, einen möglichst guten Kompromiss zwischen diesen Kosten und der verbesserten Competitive Ratio zu erreichen \cite{Dobrev}.
 
 \bigskip
-Interesssant wäre es darum, ein Modell zur Verfügung zu haben, mit welchem sich Probleme nach Anzahl und Art der zusätzlich benötigten Informationen klassifizieren liessen. \cite{Dobrev} schlägt ein solches Modell vor \cite{BKK} -- die sogenannte {\sl Advice Complexity}. Das Modell nimmt die Existenz eines {\sl Orakels} an, welchem das Problem in seiner Gesamtheit bekannt ist und welches über unlimitierte Rechenleistung verfügt \cite{Dobrev, BKK}. Das Orakel stellt dem Algorithmus bitweise Informationen zur Verfügung \cite{Dobrev}. Das Mass der {\sl Advice Complexity} bezeichnet demzufolge die Menge der zwischen dem Algorithmus und dem Orakel ausgetauschten Informationen. Da diese Menge an Informationen generell von der Länge der Eingabe abhängt, bezeichnet die Advice Complexity von $A$ für Eingaben der Länge $n$ das Maximum an Abfragen für alle Eingaben mit maximaler Länge von $n$ \cite{BKK}.
+Interesssant wäre es darum, ein Modell zur Verfügung zu haben, mit welchem sich Probleme nach Anzahl und Art der zusätzlich benötigten Informationen klassifizieren liessen. \cite{Dobrev} schlägt ein solches Modell vor \cite{BKK} -- die sogenannte {\sl Advice Complexity}. Das Modell nimmt die Existenz eines {\sl Orakels} $\mathcal{O}$ an, welchem das Problem in seiner Gesamtheit bekannt ist und welches über unlimitierte Rechenleistung verfügt \cite{Dobrev, BKK}. Das Orakel stellt dem Algorithmus $\mathcal{A}$ bitweise Informationen zur Verfügung \cite{Dobrev}. Das Mass der {\sl Advice Complexity} bezeichnet demzufolge die Menge der zwischen dem Algorithmus und dem Orakel ausgetauschten Informationen. Da diese Menge an Informationen generell von der Länge der Eingabe abhängt, bezeichnet die Advice Complexity von $A$ für Eingaben der Länge $n$ das Maximum an Advice Complexitiy für alle Abfragen für Totaleingaben mit maximaler Länge von $n$, normalisiert auf $n$ \cite{BKK}:
+
+\[
+	B_{(\mathcal{A}, \mathcal{O})} = \max_{I \in \mathcal{I}^n} \frac { B_{(\mathcal{A}, \mathcal{O})}(I) }{n}
+\]
 
 \bigskip
 
@@ -301,11 +305,26 @@ Interesssant wäre es darum, ein Modell zur Verfügung zu haben, mit welchem sic
 
 Bezogen auf {\sc SkiRental} würde der Algorithmus das Orakel vor dem ersten Wochenende fragen, ob er die Skis kaufen oder mieten soll, und das Orakel würde diese Frage mit {\sl Kaufen} oder {\sl Mieten} beantworten. Danach wäre keine weitere Kommunikation zwischen Orakel und Algorithmus notwendig.
 
-\item Im {\sl Helper}-Modus schickt das Orakel dem Algorithmus sporadisch und spontan Advices. Wir können uns das so vorstellen, dass 
+\item Im {\sl Helper}-Modus schickt das Orakel dem Algorithmus sporadisch und spontan Advices. Wir können uns das so vorstellen, dass der Algorithmus mehrere voneinander unabhängige Verhaltensmuster für die Berechnung der Teilausgabe aufweist, welche vom Orakel entsprechend aufgerufen werden können. Bei jedem notwendigen Wechsel des Verhaltensmusters würde das Orakel erneut einen Advice senden.
+
+Bezogen auf {\sc SkiRental} würde das Orakel den Algorithmus vor dem ersten Wochenende entweder in den {\sl Kaufen}- oder {\sl Mieten}-Modus versetzen. Der {\sl Kaufen}-Modus kauft die Skis für die erste Teileingabe und tut nichts mehr für alle folgenden Teileingaben, während der {\sl Mieten}-Modus für jede Teileingabe die Skis mietet.
 \end{itemize}
 
+\bigskip
+
+Wir beobachten, dass die Länge der vom Orakel gegebenen Advice-Strings ebenfalls Informationen beinhalten (beispielsweise zeigt ein leerer String im {\sl Helper}-Modus dem Algorithmus an, das momentane Verhaltensmuster beizubehalten). Dies ist insofern ein Problem, als dass es das Modell einerseits komplexer als notwendig macht. Andererseits wird der Vergleich von Advice Complexity mit anderen Komplexitätsmassen dadurch erschwert \cite{BKK}.
+
+\cite{BKKR} entwickelt dieses Modell der Advice Complexity dahingehend weiter, als dass die Existenz eines {\sl Advice Tapes} angenommen wird, wohin das Orakel alle Advices sequentiell schreibt, und zwar vor der Berechnung der ersten Teileingabe durch den Algorithmus. Dadurch wird das Modell direkt vergleichbar mit demjenigen von randomisierten Online-Algorithmen \cite{BKK}; es kann konstatiert werden, dass für jeden randomisierten Online-Algorithmus $\mathcal{R}$, welcher $b$ Bits von seinem Random-Tape liest und eine Competitive Ratio von $r$ erreicht, ein Algorithmus mit Advice $\mathcal{A}$ und Orakel $\mathcal{O}$ existiert, welcher $b$ Advice-Bits benötigt und dessen Competitive Ratio ebenfalls $r$ ist \cite{BKKR}. Dies ist einfach durch die Konstruktion von $\mathcal{O}$ dahingehend zu erreichen, dass $\mathcal{O}$ dieselben Bits auf das Advice Tape schreibt, wie auf dem Random Tape für den randomisierten Algorithmus stehen würden.
 
 
+
+
+
+
+
+
+
+\chapter{Bipartite Graphen}
 
 
 

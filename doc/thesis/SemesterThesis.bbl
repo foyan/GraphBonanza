@@ -8,6 +8,11 @@ Hans-Joachim Böckenhauer, Dennis Komm, Rastislav Královič, Richard
   Algorithms and Computation}, volume 5878 of {\em Lecture Notes in Computer
   Science}, pages 331--340. Springer Berlin Heidelberg, 2009.
 
+\bibitem{BKKR}
+Hans-Joachim Böckenhauer, Dennis Komm, Rastislav Královič, Richard
+  Královič, and Tobias Mömke.
+\newblock Online algorithms with advice. technical report 614, 2009.
+
 \bibitem{Dobrev}
 Stefan Dobrev, Rastislav Královič, and Dana Pardubská.
 \newblock Measuring the problem-relevant information in input.
