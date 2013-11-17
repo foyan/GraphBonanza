@@ -131,7 +131,7 @@ Eine weitere Folge des obengenannten Unterschieds manifestiert sich darin, dass 
 
 \section{Competitive Ratio}
 
-Eine gängige Möglichkeit, dieses Problem zu lösen, ist die von Sleator und Tarjan eingeführte {\it Competitive Ratio} \cite{Sleator, BKK}, welche im Grunde genommen das Verhältnis zwischen den Kosten der optimalen Lösung und deren des zu untersuchenden Online-Algorithmus ausdrückt \cite{BKK}. Da die Qualität der Lösung eines Online-Algorithmus wesentlich von der Beschaffenheit der Eingabe abhängt, wird dabei vom jeweils schlechtestmöglichen Fall ausgegangen \cite{Trevisan}.
+Eine gängige Möglichkeit, dieses Problem zu lösen, ist die von Sleator und Tarjan eingeführte {\it Competitive Ratio} \cite{Sleator, BKK}, welche im Grunde genommen das Verhältnis zwischen den Kosten der optimalen Lösung und derer des zu untersuchenden Online-Algorithmus ausdrückt \cite{BKK}. Da die Qualität der Lösung eines Online-Algorithmus wesentlich von der Beschaffenheit der Eingabe abhängt, wird dabei vom jeweils schlechtestmöglichen Fall ausgegangen \cite{Trevisan}.
 
 \bigskip
 Formal kann die Competitive Ratio folgendermassen definiert werden: Sei $\operatorname{opt}(I)$ die optimale Lösung eines konkreten Online-Problems für eine Sequenz aus Teileingaben $I$. $\mathcal{I}$ sei die Menge aller möglicher solcher Sequenzen. Seien ferner $\mathcal{S}$ alle möglichen Lösungen (mit $\operatorname{opt}(I) \in \mathcal{S}$), $A(I) \in \mathcal{S}$ diejenige Lösung, welche der Online-Algorithmus zu diesem Problem liefern kann, und $C : \mathcal{S} \rightarrow \mathbb{R}$ die Kosten für die jeweilige Lösung.
@@ -281,15 +281,28 @@ Zurück auf die Realität bezogen, scheint es eine sinnvolle Strategie bei {\sl 
 Es ist augenscheinlich, dass die Lösung $t = 10$ für unsere Instanz des {\sc SkiRental}-Problems die beste Approximation ist, welche wir erreichen können, solange wir nicht in die Zukunft schauen können. Nichtsdestotrotz ist diese Lösung offensichtlich weit entfernt davon, optimal zu sein -- im schlechtesten Fall würden wir $1.9$ mal so viel für unsere Skis bezahlen wie eigentlich nötig.
 
 \bigskip
-Entsprechend interessant wäre es, eine Aussage darüber machen zu können, wieviel zusätzliche Information wir zur Verfügung haben müssten, um das Problem optimal lösen zu können.
+Entsprechend interessant wäre es, eine Aussage darüber machen zu können, wieviel zusätzliche Information der Online-Algorithmus zur Verfügung haben müsste, um das Problem optimal (oder mit einer festgelegten Competitive Ratio \cite{BKK}) lösen zu können. Während die Competitive Ratio die Kosten darstellt, welche durch die gefundene Lösung zusätzlich zur optimalen Lösung zu gewärtigen wären, würde diese Aussage den Zusatznutzen beschreiben, welcher sich durch den Preis dieser zusätzlichen Kosten erkaufen liesse \cite{Dobrev}.
 
+\bigskip
+Für unser {\sc SkiRental}-Problem ist die Antwort denkbar trivial: Es ist vollkommen ausreichend, bei der ersten Entscheidung (sprich bei der Berechnung des ersten Teilresultats) zu wissen, ob die Skis gekauft werden  oder ob sie für dieses und alle weiteren Wochenenden gemietet werden sollen -- mit einem einzigen Bit zusätzlicher Information könnte das Problem also optimal gelöst werden.
 
+\bigskip
+{\sc SkiRental} ist insofern speziell, als dass dem ganzen Leben (und damit auch der Freizeitplanung) nichtdeterministische Aspekte innewohnen; aus diesem Grunde wird die benötigte Information von keiner Instanz geliefert werden können. Auf der anderen Seite sind aber durchaus Probleme denkbar, welche eigentlich Online-Probleme sind (oder aus praktischen Gründen von Online-Algorithmen gelöst werden), die Qualität der Resultat aber nachhaltig verbessert werden könnte, wenn zusätzliche Offline-Informationen aus der gesamten Eingabe herangezogen werden könnten. Deren Beschaffung könnte mit derart hohen Kosten verbunden sein, dass die Bestrebung wäre, einen möglichst guten Kompromiss zwischen diesen Kosten und der verbesserten Competitive Ratio zu erreichen \cite{Dobrev}.
 
+\bigskip
+Interesssant wäre es darum, ein Modell zur Verfügung zu haben, mit welchem sich Probleme nach Anzahl und Art der zusätzlich benötigten Informationen klassifizieren liessen. \cite{Dobrev} schlägt ein solches Modell vor \cite{BKK} -- die sogenannte {\sl Advice Complexity}. Das Modell nimmt die Existenz eines {\sl Orakels} an, welchem das Problem in seiner Gesamtheit bekannt ist und welches über unlimitierte Rechenleistung verfügt \cite{Dobrev, BKK}. Das Orakel stellt dem Algorithmus bitweise Informationen zur Verfügung \cite{Dobrev}. Das Mass der {\sl Advice Complexity} bezeichnet demzufolge die Menge der zwischen dem Algorithmus und dem Orakel ausgetauschten Informationen. Da diese Menge an Informationen generell von der Länge der Eingabe abhängt, bezeichnet die Advice Complexity von $A$ für Eingaben der Länge $n$ das Maximum an Abfragen für alle Eingaben mit maximaler Länge von $n$ \cite{BKK}.
 
+\bigskip
 
+\cite{Dobrev} schlägt vor, die Kommunikation zwischen dem Orakel und dem Algorithmus in wahlweise zwei verschiedenen Modi ablaufen zu lassen:
 
+\begin{itemize}
+\item Im {\sl Answerer}-Modus entscheidet der Algorithmus selbständig, ob und für welche Eingaben er das Orakel um Rat fragen muss. Für jede Anfrage schickt das Orakel einen Advice-String zurück, welcher aber nicht leer sein kann \cite{Dobrev} (denn dies wäre ja kein sinnvoller Rat).
 
+Bezogen auf {\sc SkiRental} würde der Algorithmus das Orakel vor dem ersten Wochenende fragen, ob er die Skis kaufen oder mieten soll, und das Orakel würde diese Frage mit {\sl Kaufen} oder {\sl Mieten} beantworten. Danach wäre keine weitere Kommunikation zwischen Orakel und Algorithmus notwendig.
 
+\item Im {\sl Helper}-Modus schickt das Orakel dem Algorithmus sporadisch und spontan Advices. Wir können uns das so vorstellen, dass 
+\end{itemize}
 
 
 
