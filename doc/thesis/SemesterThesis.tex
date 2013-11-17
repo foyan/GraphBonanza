@@ -196,6 +196,10 @@ Der Verlauf von $\operatorname{opt}(I)$ und $A(I)$ ist in Abbildung \ref{fig.ski
 		(11,500)
 		(12,500)
 		(13,500)
+		(14,500)
+		(15,500)
+		(16,500)
+		(17,500)
 	};
 	\addlegendentry{$\operatorname{opt}(I)$}
     \addplot coordinates {
@@ -212,6 +216,10 @@ Der Verlauf von $\operatorname{opt}(I)$ und $A(I)$ ist in Abbildung \ref{fig.ski
 		(11,1000)
 		(12,1050)
 		(13,1100)
+		(14,1150)
+		(15,1200)
+		(16,1250)
+		(17,1300)
 	};
 	\addlegendentry{$A(I)$}
   \end{axis}
@@ -243,19 +251,59 @@ Der Verlauf von $\operatorname{opt}(I)$ und $A(I)$ ist in Abbildung \ref{fig.ski
 		(11,2)
 		(12,2.1)
 		(13,2.2)
+		(14,2.3)
+		(15,2.4)
+		(16,2.5)
+		(17,2.6)
 	};
   \end{axis}
 \end{tikzpicture}
 \end{center}
 \end{figure}
 
+\bigskip
 Allgemein kann die Competitive Ratio für dieses Problem (mit allgemeinen Kosten $b$ für den Kauf bzw. $r$ für die Miete) beschrieben werden als
 \[
-	c_t = \begin{cases}
+	c(t) = \begin{cases}
 		\frac{b+(t-1)\cdot r}{t\cdot r}, & \text{wenn } r\cdot t \le b \\
-		\frac{b+(t-1)\cdot r}{b}, & \text{sonst}
+		\frac{b+(t-1)\cdot r}{b}, & \text{sonst}.
 	\end{cases}
 \]
+
+Unsere Instanz des {\sc SkiRental}-Problems ist also $1.9$-kompetitiv; im Allgemeinen ist {\sc SkiRental} $(2-\frac r b)$-kompetitiv \cite{Dobrev}.
+
+\bigskip
+Zurück auf die Realität bezogen, scheint es eine sinnvolle Strategie bei {\sl Kaufen oder Mieten}-Problemen zu sein, das Objekt zu dem Zeitpunkt zu kaufen, an dem die kumulierten Mietkosten die Kaufkosten aufwiegen oder überschreiten -- die Competitive Ratio ist zu diesem Zeitpunkt die beste. Ausserdem kann die Annahme getroffen werden, dass die Wahrscheinlichkeit für eine weitere Benutzung des entsprechenden Objekts um einen mindestens gleich langen Zeitraum wie während der Mietphase (während welcher sich die Kaufkosten amortisieren) relevant ist \cite{Trevisan}.
+
+
+\section{Das Orakel}
+
+Es ist augenscheinlich, dass die Lösung $t = 10$ für unsere Instanz des {\sc SkiRental}-Problems die beste Approximation ist, welche wir erreichen können, solange wir nicht in die Zukunft schauen können. Nichtsdestotrotz ist diese Lösung offensichtlich weit entfernt davon, optimal zu sein -- im schlechtesten Fall würden wir $1.9$ mal so viel für unsere Skis bezahlen wie eigentlich nötig.
+
+\bigskip
+Entsprechend interessant wäre es, eine Aussage darüber machen zu können, wieviel zusätzliche Information wir zur Verfügung haben müssten, um das Problem optimal lösen zu können.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Zelluläre Automaten}
 

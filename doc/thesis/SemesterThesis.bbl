@@ -8,6 +8,12 @@ Hans-Joachim Böckenhauer, Dennis Komm, Rastislav Královič, Richard
   Algorithms and Computation}, volume 5878 of {\em Lecture Notes in Computer
   Science}, pages 331--340. Springer Berlin Heidelberg, 2009.
 
+\bibitem{Dobrev}
+Stefan Dobrev, Rastislav Královič, and Dana Pardubská.
+\newblock Measuring the problem-relevant information in input.
+\newblock {\em RAIRO - Theoretical Informatics and Applications}, 43:585--613,
+  7 2009.
+
 \bibitem{Sleator}
 Daniel~D. Sleator and Robert~E. Tarjan.
 \newblock Amortized efficiency of list update and paging rules.

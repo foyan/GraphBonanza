@@ -3,15 +3,16 @@
 \contentsline {section}{\numberline {2.1}Online- vs. Offline-Probleme}{5}{section.2.1}
 \contentsline {section}{\numberline {2.2}Competitive Ratio}{5}{section.2.2}
 \contentsline {section}{\numberline {2.3}Das {\sc SkiRental}-Problem}{6}{section.2.3}
-\contentsline {section}{\numberline {2.4}Zellul\IeC {\"a}re Automaten}{8}{section.2.4}
-\contentsline {section}{\numberline {2.5}Vom zellul\IeC {\"a}ren Automaten zur Differentialgleichung}{10}{section.2.5}
-\contentsline {section}{\numberline {2.6}Numerische L\IeC {\"o}sung von Differentialgleichungen}{11}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Differenzierung nach dem Ort}{11}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Integration nach der Zeit mit Einschrittverfahren}{12}{subsection.2.6.2}
-\contentsline {subsubsection}{Forderung}{12}{section*.6}
+\contentsline {section}{\numberline {2.4}Das Orakel}{8}{section.2.4}
+\contentsline {section}{\numberline {2.5}Zellul\IeC {\"a}re Automaten}{8}{section.2.5}
+\contentsline {section}{\numberline {2.6}Vom zellul\IeC {\"a}ren Automaten zur Differentialgleichung}{11}{section.2.6}
+\contentsline {section}{\numberline {2.7}Numerische L\IeC {\"o}sung von Differentialgleichungen}{11}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Differenzierung nach dem Ort}{12}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}Integration nach der Zeit mit Einschrittverfahren}{13}{subsection.2.7.2}
+\contentsline {subsubsection}{Forderung}{13}{section*.6}
 \contentsline {subsubsection}{Die impliziten Runge-Kutta-Verfahren}{13}{section*.7}
-\contentsline {subsubsection}{Die expliziten Runge-Kutta-Verfahren}{13}{section*.8}
-\contentsline {subsection}{\numberline {2.6.3}Die homogene Wellengleichung}{14}{subsection.2.6.3}
+\contentsline {subsubsection}{Die expliziten Runge-Kutta-Verfahren}{14}{section*.8}
+\contentsline {subsection}{\numberline {2.7.3}Die homogene Wellengleichung}{14}{subsection.2.7.3}
 \contentsline {chapter}{\numberline {3}Bemerkungen zur Implementation}{16}{chapter.3}
 \contentsline {section}{\numberline {3.1}Wahl des Umfelds}{16}{section.3.1}
 \contentsline {section}{\numberline {3.2}Implementatorische Paradigmen}{16}{section.3.2}
