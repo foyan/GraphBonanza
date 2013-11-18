@@ -5,5 +5,6 @@
 \contentsline {section}{\numberline {2.3}Das {\sc SkiRental}-Problem}{5}{section.2.3}
 \contentsline {section}{\numberline {2.4}Das Orakel}{7}{section.2.4}
 \contentsline {section}{\numberline {2.5}Online {\sc SimpleKnapsack} mit Advice}{9}{section.2.5}
-\contentsline {chapter}{\numberline {3}Bipartite Graphen}{11}{chapter.3}
+\contentsline {chapter}{\numberline {3}Online Graph Coloring von bipartiten Graphen}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Das F\IeC {\"a}rben von Graphen}{11}{section.3.1}
 \contentsline {chapter}{Literaturverzeichnis}{12}{chapter*.4}

@@ -104,7 +104,7 @@
 \newtheorem{definition}{Definition}
 \newtheorem*{bemerkung}{Bemerkung}
 
-\title{Experimentelle Verifikation von oberen und unteren Advice-Schranken für das Coloring-Problem auf bipartiten Graphen}
+\title{Graph Coloring als Online-Problem mit bipartiten Graphen und Advice Complexity}
 \subtitle{Semesterarbeit}
 \author{Florian Lüthi\footnote{\url{luethifl@students.zhaw.ch}}}
 \date{ZHAW, 22. November 2013} % Activate to display a given date or no date (if empty),
@@ -325,19 +325,40 @@ Um die teilweise überraschenden Fähigkeiten von Algorithmen mit Advice zu demo
 Erschwerend kommt noch hinzu, dass dieses Problem als Online-Problem formuliert wird -- der Algorithmus bekommt also einen Gegenstand präsentiert und muss sofort entscheiden, ob er diesen im Rucksack verstauen will oder nicht. Das nachträgliche Entfernen von bereits verstauten Gegenständen ist nicht erlaubt \cite{knapsack}.
 
 \bigskip
-Allgemein existiert kein kompetitiver deterministischer Online-Algorithmus \cite{spaccamela}; die einzige Möglichkeit besteht im Grunde genommen darin, sämtliche präsentierten Gegenstände der Reihe nach einzupacken, solange sie noch in den Rucksack passen. Ein möglicher Adversary wäre nun die Sequenz $\langle \varepsilon, 1 \rangle$, wobei $\varepsilon$ beliebig klein gewählt werden könnte; dies führt dazu, dass der Algorithmus $\varepsilon$ in den Rucksack packt und dann aufhören muss, weil $\varepsilon + 1$ die Kapazitätsgrenze überschreiten würde.
+Allgemein existiert kein kompetitiver deterministischer Online-Algorithmus \cite{spaccamela}; die einzige Möglichkeit besteht im Grunde genommen darin, sämtliche präsentierten Gegenstände der Reihe nach einzupacken, solange sie noch in den Rucksack passen. Ein möglicher Adversary wäre nun die Sequenz $\langle \varepsilon, 1 \rangle$, wobei $\varepsilon$ beliebig nahe an $0$ gewählt werden könnte; dies führt dazu, dass der Algorithmus $\varepsilon$ in den Rucksack packt und dann aufhören muss, weil $\varepsilon + 1$ die Kapazitätsgrenze überschreiten würde.
 
 Die Competitive Ratio dieses Algorithmus wäre entsprechend
 \[
 	r = \lim_{\varepsilon \rightarrow 0} \frac {1} { \varepsilon} = \infty.
 \]
 
-Wenn wir nun ein 
+Wenn wir nun ein Orakel dazudenken, welches dem Algorithmus bei der ersten Entscheidung mitteilt, ob in der Sequenz ein Gegenstand $w_i$ vorkommt, für welchen $w_i \ge 0.5$ gilt, könnte der Algorithmus folgende Fallunterscheidung machen:
+
+\begin{enumerate}[a)]
+\item Falls ein solcher Gegenstand vorkommt, würde der Algorithmus solange alle Gegenstände verwerfen, bis ein Gegenstand mit $w_i \ge 0.5$ zur Debatte steht. Diesen würde er wie auch alle nachfolgenden in den Rucksack packen. Da er zumindest ersteren gepackt hat, hätte der Rucksack mindestens eine Gesamtfüllung von $0.5$.
+\item Falls hingegen kein solcher Gegenstand vorkommt, würde der Algorithmus von Anfang an alle Gegenstände in den Rucksack packen. Der Rucksack wäre damit ebenfalls zu mindestens zur Hälfte gefüllt, da es keinen Gegenstand $\ge 0.5$ geben kann, der nicht in den Rucksack passen würde (ansonsten Fall a) zur Anwendung gelangt wäre).
+\end{enumerate}
+
+Daraus folgt, dass die Competitive Ratio des Algorithmus mit einem einzigen Advice Bit
+\[
+	r = \frac 1 {0.5} = 2
+\]
+ist \cite{knapsack}.
+
+\bigskip
+Spannenderweise wird die Competitive Ratio für $b \in \mathcal{O}(1)$ nicht wesentlich verbessert. Der Grund dafür ist im Prinzip, dass eine konstante Anzahl an Advice Bits nicht ausreichen kann, um genügend Informationen darüber transportieren zu können, welche Gegenstände ausgewählt werden sollen. Für $b \in \mathcal{O}(\log(n))$ gilt dies hingegen -- die Competitive Ratio reduziert sich dann auf $r = 1 + \varepsilon$ \cite{knapsack}.
 
 
-\chapter{Bipartite Graphen}
 
 
+
+
+
+
+
+\chapter{Online Graph Coloring von bipartiten Graphen}
+
+\section{Das Färben von Graphen}
 
 
 

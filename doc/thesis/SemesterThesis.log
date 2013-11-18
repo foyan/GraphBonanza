@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.6.2)  17 NOV 2013 19:22
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.6.2)  18 NOV 2013 08:57
 entering extended mode
 **C:/code/GraphBonanza/doc/thesis/SemesterThesis.tex
 (C:/code/GraphBonanza/doc/thesis/SemesterThesis.tex
@@ -1314,24 +1314,24 @@ Kapitel 3.
 (C:\code\GraphBonanza\doc\thesis\SemesterThesis.bbl [11
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 358.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 379.
  [12
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 358.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 379.
 
 (C:\code\GraphBonanza\doc\thesis\SemesterThesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 358.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 358.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 379.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 379.
 Package rerunfilecheck Info: File `SemesterThesis.out' has not changed.
-(rerunfilecheck)             Checksum: 1707A811DD08C488D3C79B0362E09C03;552.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 358.
+(rerunfilecheck)             Checksum: 60C119471A21AECF3D74EF290A69DAE7;652.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 379.
  ) 
 Here is how much of TeX's memory you used:
- 27337 strings out of 493921
- 587520 string characters out of 3147289
+ 27342 strings out of 493921
+ 587566 string characters out of 3147289
  788349 words of memory out of 3000000
- 30096 multiletter control sequences out of 15000+200000
+ 30098 multiletter control sequences out of 15000+200000
  17415 words of font info for 67 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  65i,19n,94p,1081b,2184s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1354,9 +1354,9 @@ ts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
 y8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Progr
 am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on SemesterThesis.pdf (12 pages, 282139 bytes).
+Output written on SemesterThesis.pdf (12 pages, 284911 bytes).
 PDF statistics:
- 240 PDF objects out of 1000 (max. 8388607)
- 34 named destinations out of 1000 (max. 500000)
- 85 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 252 PDF objects out of 1000 (max. 8388607)
+ 37 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -5,5 +5,6 @@
 \BOOKMARK [1][-]{section.2.3}{Das SkiRental-Problem}{chapter.2}% 5
 \BOOKMARK [1][-]{section.2.4}{Das Orakel}{chapter.2}% 6
 \BOOKMARK [1][-]{section.2.5}{Online SimpleKnapsack mit Advice}{chapter.2}% 7
-\BOOKMARK [0][-]{chapter.3}{Bipartite Graphen}{}% 8
-\BOOKMARK [0][-]{chapter*.4}{Literaturverzeichnis}{}% 9
+\BOOKMARK [0][-]{chapter.3}{Online Graph Coloring von bipartiten Graphen}{}% 8
+\BOOKMARK [1][-]{section.3.1}{Das F\344rben von Graphen}{chapter.3}% 9
+\BOOKMARK [0][-]{chapter*.4}{Literaturverzeichnis}{}% 10
