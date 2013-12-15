@@ -38,6 +38,10 @@
 \usepackage{listings}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usetikzlibrary{arrows,%
+                petri,%
+                topaths}%
+\usepackage{tkz-berge}
 % These packages are all incorporated in the memoir class to one degree or another...
 
 \usepackage{listings}
@@ -358,11 +362,87 @@ Spannenderweise wird die Competitive Ratio für $b \in \mathcal{O}(1)$ nicht wes
 
 \chapter{Online Graph Coloring von bipartiten Graphen}
 
-\section{Das Färben von Graphen}
+Im weiteren Verlauf dieser Arbeit wollen wir uns mit einer speziellen Variante des Graphenfärbeproblems beschäftigen. Damit wir dies tun können, wollen wir einige Begriffe definieren:
+
+\begin{definition}[Graph]
+
+Ein (ungerichteter, ungewichteter) Graph ist ein Tupel
+\[
+	G = (V, E),
+\]
+wobei $V = \{v_1, v_2, \dots \}$ dessen Knoten {\sl (vertices)} bezeichnet und $E = \{ e_1, e_2 \}$ dessen Kanten {\sl (edges)}. Jedes $e$ ist eine 2-elementige Teilmenge von $V$. \cite{biggs}
+
+\end{definition}
+
+Abbildung \ref{graph} illustriert einen Graphen mit
+\[
+	V = \{v_1,v_2,v_3,v_4,v_5,v_6\}
+\]
+und
+\[
+	E = \left\{  \{v_1,v_2\}, \{v_3,v_6\}, \{v_2,v_5\}, \{v_3,v_4\}  \right\}
+\]
+
+\begin{figure}
+\caption{Ein Graph}
+\label{graph}
+\begin{center}
+
+\begin{tikzpicture}[scale=0.75,transform shape]
+\Vertex[x=0,y=0,L=$v_1$]{A}
+\Vertex[x=2,y=5,L=$v_2$]{B}
+\Vertex[x=0,y=2,L=$v_3$]{C}
+\Vertex[x=0,y=3,L=$v_4$]{D}
+\Vertex[x=5,y=4,L=$v_5$]{E}
+\Vertex[x=3,y=0,L=$v_6$]{F}
+
+\Edge(A)(B)
+\Edge(C)(F)
+\Edge(B)(E)
+\Edge(C)(D)
+\end{tikzpicture}
+
+\end{center}
+\end{figure}
+
+\begin{definition}[Bipartiter Graph]
+Wenn alle Knoten eines Graphen $G$ so in zwei disjunkte Mengen $S_1$ und $S_2$ (Partitionsklassen oder {\sl shores}) aufgeteilt werden können, dass keine Kanten von $G$ zwischen Knoten aus $S_1$ und solchen aus $S_2$ existieren, sprechen wir von einem bipartiten Graphen.
+\end{definition}
+
+Abbildung \ref{bipartGraph} illustriert einen bipartiten Graphen.
+
+\begin{figure}
+\caption{Ein bipartiter Graph}
+\label{bipartGraph}
+\begin{center}
+
+\begin{tikzpicture}[scale=0.75,transform shape]
+
+\Vertex[x=0,y=0,L=$v_1$]{A1}
+\Vertex[x=1,y=0,L=$v_2$]{A2}
+\Vertex[x=2,y=4,L=$v_3$]{A3}
+\Vertex[x=3,y=4,L=$v_4$]{A4}
+\Vertex[x=4,y=0,L=$v_5$]{A5}
+\Vertex[x=5,y=4,L=$v_6$]{A6}
+\Vertex[x=6,y=0,L=$v_7$]{A7}
+\Vertex[x=7,y=0,L=$v_8$]{A8}
+\Vertex[x=8,y=4,L=$v_9$]{A9}
 
 
 
+\Edge(A1)(A3)
+\Edge(A2)(A3)
+\Edge(A2)(A9)
+\Edge(A7)(A9)
+\Edge(A5)(A6)
+\Edge(A6)(A8)
+\Edge(A4)(A8)
+\end{tikzpicture}
 
+\end{center}
+\end{figure}
+
+Bipartite Graphen 
 
 
 
