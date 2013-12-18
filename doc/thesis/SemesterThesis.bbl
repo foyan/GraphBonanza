@@ -45,6 +45,21 @@ P.~Erd\"{o}s and A.~R\'{e}nyi.
 \newblock On random graphs i.
 \newblock {\em Publicationes Mathematicae Debrecen}, 6:290, 1959.
 
+\bibitem{gonthier}
+Georges Gonthier.
+\newblock {A computer-checked proof of the Four Colour Theorem}.
+\newblock 2005.
+
+\bibitem{hopcroft}
+John~E. Hopcroft and Jeff~D. Ullman.
+\newblock {\em Introduction to Automata Theory, Languages, and Computation}.
+\newblock Addison-Wesley Publishing Company, 1979.
+
+\bibitem{lovasz}
+László Lovász, Michael Saks, and W.T. Trotter.
+\newblock An on-line graph coloring algorithm with sublinear performance ratio.
+\newblock {\em Discrete Mathematics}, 75(1–3):319 -- 325, 1989.
+
 \bibitem{spaccamela}
 A.~Marchetti-Spaccamela and C.~Vercellis.
 \newblock Stochastic on-line knapsack problems.

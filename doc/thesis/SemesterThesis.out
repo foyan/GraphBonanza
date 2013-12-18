@@ -9,5 +9,6 @@
 \BOOKMARK [1][-]{section.3.1}{Modelle von \(bipartiten\) Graphen}{chapter.3}% 9
 \BOOKMARK [1][-]{section.3.2}{Zufallsgraphen}{chapter.3}% 10
 \BOOKMARK [1][-]{section.3.3}{Generierung von Zufallsgraphen}{chapter.3}% 11
-\BOOKMARK [1][-]{section.3.4}{Generierung von bipartiten Zufallsgraphen}{chapter.3}% 12
-\BOOKMARK [0][-]{chapter*.7}{Literaturverzeichnis}{}% 13
+\BOOKMARK [1][-]{section.3.4}{Graph Coloring}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.5}{Online Graph Coloring}{chapter.3}% 13
+\BOOKMARK [0][-]{chapter*.9}{Literaturverzeichnis}{}% 14

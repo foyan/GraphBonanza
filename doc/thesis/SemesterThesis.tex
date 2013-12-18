@@ -740,8 +740,144 @@ Damit können wir unseren Algorithmus optimieren (siehe Algorithmus~\ref{gen.opt
 
 \end{enumerate}
 
-\section{Generierung von bipartiten Zufallsgraphen}
+\section{Graph Coloring}
 
+\begin{definition}[Knotenfärbung]
+
+Für einen ungerichteten Graphen $G = (V, E)$ ist die Abbildung
+\[
+f : V \rightarrow C \subset \mathbb{N}
+\]
+eine Knotenfärbung, wenn keinen zwei Knoten, die durch eine Kante verbunden sind, dieselbe Farbe ($c \in C$) zugeordnet wird.
+
+$G$ heisst $k$-knotenfärbbar, wenn die maximale Anzahl verwendeter Farben $k$ beträgt -- das heisst, wenn für alle $v \in V$ gilt, dass
+\[
+f(v) < k.
+\]
+
+Die kleinstmögliche solche Zahl $k$ wird Chromatische Zahl $\chi(G)$ geheissen.
+
+\end{definition}
+
+Das Auffinden einer gültigen Färbung für einen Graphen wird als Graphenfärbeproblem bezeichnet. Das dazugehörige Entscheidungsproblem, ob ein Graph $k$-färbbar ist, ist eines von Karp's 21 $\mathcal{NP}$-vollständigen Problemen \cite{hopcroft}. Praktische Anwendung finden Färbeprobleme vor allem als mathematische Formulierung von Scheduling-Problemen aller Art, beispielsweise für Stundenpläne. Ein anderes wohlstudiertes Problem ist die Frage, wie viele Farben notwendig sind, um auf einer beliebigen Landkarte jedes Land so einzufärben, dass nie zwei benachbarte Länder dieselbe Farbe haben -- mit dem lange vermuteten, aber doch überraschenden Ergebnis, dass 4 Farben ausreichend sind \cite{gonthier}.
+
+\bigskip
+Ausserdem liegt auf der Hand, dass ein bipartiter Graph stets $2$-färbbar ist.
+
+
+\section{Online Graph Coloring}
+
+Wir wollen das Graphenfärbeproblem nun als Online-Problem betrachten. Dafür stellen wir uns vor, dass der zu färbende Graph nicht komplett vorliegt, sondern jeder Knoten einzeln präsentiert wird. Jeder Knoten muss im Moment seiner Präsentation eingefärbt werden. Alle Kanten zwischen bereits aufgedeckten Knoten sind bekannt, alle anderen jedoch nicht. \cite{lovasz}
+
+Offensichtlich kann ein solches Problem nicht per se optimal gelöst werden, da Informationen über das gesamte Problem fehlen. Abbildung~\ref{bipart.greedy} veranschaulicht den simplen First Fit-Algorithmus~\ref{algo.firstfit}, der für einen beispielhaften (aber doch unspektakulären) bipartiten Graphen folgendermassen scheitert:
+\begin{enumerate}
+\item Der Knoten $v_0$ wird präsentiert, und bekommt die Farbe Blau.
+\item Der Knoten $v_1$ wird präsentiert, und bekommt ebenfalls die Farbe Blau, da noch keine Kante bekannt ist.
+\item Der Knoten $v_2$ wird präsentiert, und mit ihm die Kante $\{v_0, v_2\}$. $v_2$ bekommt die Farbe Rot, da $v_0$ bereits die Farbe Blau bekommen hat.
+\item Der Knoten $v_3$ wird präsentiert, und mit ihm die Kanten $\{v_0, v_3\}$ und $\{v_1, v_3\}$. $v_3$ bekommt die Farbe Grün, da $v_1$ bereits die Farbe Blau und $v_2$ bereits die Farbe Rot bekommen hat.
+\end{enumerate}
+
+\begin{algorithm}
+\caption{First Fit-Algorithmus für Online Graph Coloring}
+\label{algo.firstfit}
+\begin{algorithmic}
+\Require
+	\State Der präsentierte Knoten $v$,
+	\State Der bereits bekannte Graph $G' = (V', E')$,
+	\State Die bereits bekannte Färbung $f : V' \rightarrow C$
+\Ensure
+	\State Die Färbung für den präsentierten Knoten $f(v) \in C$
+\Statex
+
+\State $f(v) \gets -1$
+\State $c_\text{max} \gets 0 $
+\ForAll{$e \in E'$}
+	\State $\{w\} \gets e \cap v$
+	\State $c_\text{max} \gets \max \{c_\text{max}, f(w) \}$
+\EndFor
+
+\Statex
+
+\For{$c \gets 0, c_\text{max} - 1$}
+\If {$f(v) = -1$}
+\State ok $\gets$ true
+\ForAll{$e \in E'$}
+	\State $\{w\} \gets e \cap v$
+	\State ok $\gets$ ok $\land f(w) = c$
+\EndFor
+\If {ok}
+\State $f(v) \gets c$
+\EndIf
+\EndIf
+\EndFor
+\Statex
+\If {$f(v) = -1$}
+\State $f(v) \gets c_\text{max} + 1$
+\EndIf
+
+\end{algorithmic}
+\end{algorithm}
+
+Der kapitale Fehler passierte bereits beim Färben von $v_1$. Es gab anhand der bereits vorhandenen Informationen keinen Grund, nicht anzunehmen, dass $v_1$ Blau zugeordnet bekommen sollte. Wenn allerdings bekannt gewesen wäre, dass $v_1$ eine Kante zu $v_3$, dieser eine Kante zu $v_2$ und dieser wiederum eine Kante zu $v_0$ haben wird, hätte dies ausgereicht, um zu erkennen, dass $v_1$ in der gegenteiligen Shore von $v_0$ hätte platziert werden müssen, wie in Abbildung~\ref{bipart.greedy.besser} illustriert wird.
+
+\begin{figure}
+\caption{Nicht optimal färbbarer bipartiter Graph}
+\label{bipart.greedy}
+
+\begin{center}
+\begin{tikzpicture}[transform shape]
+\Vertex[x=0,y=0,L=$v_0$]{v0}
+\Vertex[x=2,y=0,L=$v_1$]{v1}
+\Vertex[x=4,y=2,L=$v_2$]{v2}
+\Vertex[x=6,y=3,L=$v_3$]{v3}
+
+\AddVertexColor{blue}{v0,v1}
+\AddVertexColor{red}{v2}
+\AddVertexColor{green}{v3}
+
+\Vertex[x=0,y=-1,L=$v_0$]{A}
+\Vertex[x=2,y=-1,L=$v_1$]{A}
+\Vertex[x=4,y=-1,L=$v_2$]{A}
+\Vertex[x=6,y=-1,L=$v_3$]{A}
+
+\Edge(v0)(v2)
+\Edge(v1)(v3)
+\Edge(v2)(v3)
+\end{tikzpicture}
+
+
+\end{center}
+
+\end{figure}
+
+\begin{figure}
+\caption{Optimal gefärbter bipartiter Graph}
+\label{bipart.greedy.besser}
+
+\begin{center}
+\begin{tikzpicture}[transform shape]
+\Vertex[x=0,y=0,L=$v_0$]{v0}
+\Vertex[x=2,y=2,L=$v_1$]{v1}
+\Vertex[x=4,y=2,L=$v_2$]{v2}
+\Vertex[x=6,y=0,L=$v_3$]{v3}
+
+\AddVertexColor{blue}{v0,v3}
+\AddVertexColor{red}{v2,v1}
+
+\Vertex[x=0,y=-1,L=$v_0$]{A}
+\Vertex[x=2,y=-1,L=$v_1$]{A}
+\Vertex[x=4,y=-1,L=$v_2$]{A}
+\Vertex[x=6,y=-1,L=$v_3$]{A}
+
+\Edge(v0)(v2)
+\Edge(v1)(v3)
+\Edge(v2)(v3)
+\end{tikzpicture}
+
+
+\end{center}
+
+\end{figure}
 
 
 \bibliography{biblio}
