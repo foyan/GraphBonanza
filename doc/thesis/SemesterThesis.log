@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.6.2)  15 DEC 2013 18:18
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.6.2)  18 DEC 2013 07:52
 entering extended mode
 **C:/Code/GraphBonanza/doc/thesis/SemesterThesis.tex
 (C:/Code/GraphBonanza/doc/thesis/SemesterThesis.tex
@@ -1159,16 +1159,51 @@ File: tkz-tool-arith.tex tkz-tool-arith 1.161 c
 ))
 \c@tkz@bg@cnt=\count176
 \c@tkza@tmp=\count177
+) (C:\Users\flo\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithms\algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count178
+\float@exts=\toks53
+\float@box=\box44
+\@float@everytoks=\toks54
+\@floatcapt=\box45
+)
+\@float@every@algorithm=\toks55
+\c@algorithm=\count179
+)
+(C:\Users\flo\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithmicx\algpseudocode.s
+ty
+Package: algpseudocode 
+
+(C:\Users\flo\AppData\Roaming\MiKTeX\2.9\tex\latex\algorithmicx\algorithmicx.st
+y
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count180
+\c@ALG@rem=\count181
+\c@ALG@nested=\count182
+\ALG@tlm=\skip65
+\ALG@thistlm=\skip66
+\c@ALG@Lnr=\count183
+\c@ALG@blocknr=\count184
+\c@ALG@storecount=\count185
+\c@ALG@tmpcounter=\count186
+\ALG@tmplength=\skip67
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (C:\Users\flo\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
-\fancy@headwidth=\skip65
-\f@ncyO@elh=\skip66
-\f@ncyO@erh=\skip67
-\f@ncyO@olh=\skip68
-\f@ncyO@orh=\skip69
-\f@ncyO@elf=\skip70
-\f@ncyO@erf=\skip71
-\f@ncyO@olf=\skip72
-\f@ncyO@orf=\skip73
+\fancy@headwidth=\skip68
+\f@ncyO@elh=\skip69
+\f@ncyO@erh=\skip70
+\f@ncyO@olh=\skip71
+\f@ncyO@orh=\skip72
+\f@ncyO@elf=\skip73
+\f@ncyO@erf=\skip74
+\f@ncyO@olf=\skip75
+\f@ncyO@orf=\skip76
 )
 (C:\Users\flo\AppData\Roaming\MiKTeX\2.9\tex\latex\sectsty\sectsty.sty
 Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
@@ -1184,64 +1219,64 @@ Package tocbibind Note: Using chapter style headings, unless overridden.
 ) (C:\Users\flo\AppData\Roaming\MiKTeX\2.9\tex\latex\tocloft\tocloft.sty
 Package: tocloft 2013/05/02 v2.3f parameterised ToC, etc., typesetting
 Package tocloft Info: The document has chapter divisions on input line 44.
-\cftparskip=\skip74
-\cftbeforetoctitleskip=\skip75
-\cftaftertoctitleskip=\skip76
-\cftbeforepartskip=\skip77
-\cftpartnumwidth=\skip78
-\cftpartindent=\skip79
-\cftbeforechapskip=\skip80
-\cftchapindent=\skip81
-\cftchapnumwidth=\skip82
-\cftbeforesecskip=\skip83
-\cftsecindent=\skip84
-\cftsecnumwidth=\skip85
-\cftbeforesubsecskip=\skip86
-\cftsubsecindent=\skip87
-\cftsubsecnumwidth=\skip88
-\cftbeforesubsubsecskip=\skip89
-\cftsubsubsecindent=\skip90
-\cftsubsubsecnumwidth=\skip91
-\cftbeforeparaskip=\skip92
-\cftparaindent=\skip93
-\cftparanumwidth=\skip94
-\cftbeforesubparaskip=\skip95
-\cftsubparaindent=\skip96
-\cftsubparanumwidth=\skip97
-\cftbeforeloftitleskip=\skip98
-\cftafterloftitleskip=\skip99
-\cftbeforefigskip=\skip100
-\cftfigindent=\skip101
-\cftfignumwidth=\skip102
-\cftbeforelottitleskip=\skip103
-\cftafterlottitleskip=\skip104
-\cftbeforetabskip=\skip105
-\cfttabindent=\skip106
-\cfttabnumwidth=\skip107
-\cftbeforesubfigskip=\skip108
-\cftsubfigindent=\skip109
-\cftsubfignumwidth=\skip110
-\cftbeforesubtabskip=\skip111
-\cftsubtabindent=\skip112
-\cftsubtabnumwidth=\skip113
+\cftparskip=\skip77
+\cftbeforetoctitleskip=\skip78
+\cftaftertoctitleskip=\skip79
+\cftbeforepartskip=\skip80
+\cftpartnumwidth=\skip81
+\cftpartindent=\skip82
+\cftbeforechapskip=\skip83
+\cftchapindent=\skip84
+\cftchapnumwidth=\skip85
+\cftbeforesecskip=\skip86
+\cftsecindent=\skip87
+\cftsecnumwidth=\skip88
+\cftbeforesubsecskip=\skip89
+\cftsubsecindent=\skip90
+\cftsubsecnumwidth=\skip91
+\cftbeforesubsubsecskip=\skip92
+\cftsubsubsecindent=\skip93
+\cftsubsubsecnumwidth=\skip94
+\cftbeforeparaskip=\skip95
+\cftparaindent=\skip96
+\cftparanumwidth=\skip97
+\cftbeforesubparaskip=\skip98
+\cftsubparaindent=\skip99
+\cftsubparanumwidth=\skip100
+\cftbeforeloftitleskip=\skip101
+\cftafterloftitleskip=\skip102
+\cftbeforefigskip=\skip103
+\cftfigindent=\skip104
+\cftfignumwidth=\skip105
+\cftbeforelottitleskip=\skip106
+\cftafterlottitleskip=\skip107
+\cftbeforetabskip=\skip108
+\cfttabindent=\skip109
+\cfttabnumwidth=\skip110
+\cftbeforesubfigskip=\skip111
+\cftsubfigindent=\skip112
+\cftsubfignumwidth=\skip113
+\cftbeforesubtabskip=\skip114
+\cftsubtabindent=\skip115
+\cftsubtabnumwidth=\skip116
 )
-\c@definition=\count178
+\c@definition=\count187
 
 (C:\Code\GraphBonanza\doc\thesis\SemesterThesis.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 119.
+LaTeX Font Info:    ... okay on input line 119.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1279,54 +1314,55 @@ LaTeX Font Info:    ... okay on input line 117.
 
 (C:\Users\flo\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count179
+\scratchcounter=\count188
 \scratchdimen=\dimen213
-\scratchbox=\box44
-\nofMPsegments=\count180
-\nofMParguments=\count181
-\everyMPshowfont=\toks53
-\MPscratchCnt=\count182
+\scratchbox=\box46
+\nofMPsegments=\count189
+\nofMParguments=\count190
+\everyMPshowfont=\toks56
+\MPscratchCnt=\count191
 \MPscratchDim=\dimen214
-\MPnumerator=\count183
-\makeMPintoPDFobject=\count184
-\everyMPtoPDFconversion=\toks54
+\MPnumerator=\count192
+\makeMPintoPDFobject=\count193
+\everyMPtoPDFconversion=\toks57
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box45
-Package hyperref Info: Link coloring ON on input line 117.
+\AtBeginShipoutBox=\box47
+Package hyperref Info: Link coloring ON on input line 119.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count185
+\c@section@level=\count194
 )
-LaTeX Info: Redefining \ref on input line 117.
-LaTeX Info: Redefining \pageref on input line 117.
-LaTeX Info: Redefining \nameref on input line 117.
+LaTeX Info: Redefining \ref on input line 119.
+LaTeX Info: Redefining \pageref on input line 119.
+LaTeX Info: Redefining \nameref on input line 119.
 
 (C:\Code\GraphBonanza\doc\thesis\SemesterThesis.out)
 (C:\Code\GraphBonanza\doc\thesis\SemesterThesis.out)
 \@outlinefile=\write4
-\c@lstlisting=\count186
+\c@lstlisting=\count195
 
 ABD: EveryShipout initializing macros
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.9} into y
 our preamble.
- on input line 117.
+ on input line 119.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 119.
+LaTeX Font Info:    Try loading font information for U+msa on input line 121.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 119.
+LaTeX Font Info:    Try loading font information for U+msb on input line 121.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1355,40 +1391,49 @@ Kapitel 2.
 [4
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 168.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 170.
 
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 168.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 170.
  [5] [6] [7]
 [8] [9] [10]
 Kapitel 3.
-(C:\Code\GraphBonanza\doc\thesis\SemesterThesis.bbl [11
+[11
 
-] [12])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 459.
- [13
+] [12]
+Overfull \hbox (8.0569pt too wide) in paragraph at lines 475--476
+[]\OT1/cmr/m/n/10.95 Abbildung [][]3.3[][] zeigt die Auf-tre-tens-wahr-schein-l
+ich-keit ei-nes Gra-phen in $\OML/cmm/m/it/10.95 G\OT1/cmr/m/n/10.95 (10\OML/cm
+m/m/it/10.95 ; p\OT1/cmr/m/n/10.95 )$ abh[]angig
+ []
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 459.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 649.
+[13] [14] (C:\Code\GraphBonanza\doc\thesis\SemesterThesis.bbl [15] [16]
+[17
 
-(C:\Code\GraphBonanza\doc\thesis\SemesterThesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 459.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 459.
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 753.
+ [18]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 753.
+ (C:\Code\GraphBonanza\doc\thesis\SemesterThesis.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 753.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 753.
 Package rerunfilecheck Info: File `SemesterThesis.out' has not changed.
-(rerunfilecheck)             Checksum: 4BF7B0077C121DA25BBFFCE1FE319A59;579.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 459.
+(rerunfilecheck)             Checksum: C617E5567745DBA2BACFA21E724A17C0;890.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 753.
  ) 
 Here is how much of TeX's memory you used:
- 28835 strings out of 493921
- 613058 string characters out of 3147289
- 789418 words of memory out of 3000000
- 31548 multiletter control sequences out of 15000+200000
+ 29512 strings out of 493921
+ 623323 string characters out of 3147289
+ 809965 words of memory out of 3000000
+ 32192 multiletter control sequences out of 15000+200000
  17415 words of font info for 67 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 65i,19n,94p,1081b,2226s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 65i,19n,94p,1081b,2230s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiK
@@ -1408,9 +1453,9 @@ ts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
 y8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Progr
 am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on SemesterThesis.pdf (13 pages, 296836 bytes).
+Output written on SemesterThesis.pdf (18 pages, 327207 bytes).
 PDF statistics:
- 260 PDF objects out of 1000 (max. 8388607)
- 42 named destinations out of 1000 (max. 500000)
- 85 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 324 PDF objects out of 1000 (max. 8388607)
+ 60 named destinations out of 1000 (max. 500000)
+ 117 words of extra memory for PDF output out of 10000 (max. 10000000)
 

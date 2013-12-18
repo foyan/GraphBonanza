@@ -6,4 +6,8 @@
 \BOOKMARK [1][-]{section.2.4}{Das Orakel}{chapter.2}% 6
 \BOOKMARK [1][-]{section.2.5}{Online SimpleKnapsack mit Advice}{chapter.2}% 7
 \BOOKMARK [0][-]{chapter.3}{Online Graph Coloring von bipartiten Graphen}{}% 8
-\BOOKMARK [0][-]{chapter*.6}{Literaturverzeichnis}{}% 9
+\BOOKMARK [1][-]{section.3.1}{Modelle von \(bipartiten\) Graphen}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.2}{Zufallsgraphen}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.3}{Generierung von Zufallsgraphen}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.4}{Generierung von bipartiten Zufallsgraphen}{chapter.3}% 12
+\BOOKMARK [0][-]{chapter*.7}{Literaturverzeichnis}{}% 13

@@ -42,6 +42,8 @@
                 petri,%
                 topaths}%
 \usepackage{tkz-berge}
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
 % These packages are all incorporated in the memoir class to one degree or another...
 
 \usepackage{listings}
@@ -362,6 +364,8 @@ Spannenderweise wird die Competitive Ratio für $b \in \mathcal{O}(1)$ nicht wes
 
 \chapter{Online Graph Coloring von bipartiten Graphen}
 
+\section{Modelle von (bipartiten) Graphen}
+
 Im weiteren Verlauf dieser Arbeit wollen wir uns mit einer speziellen Variante des Graphenfärbeproblems beschäftigen. Damit wir dies tun können, wollen wir einige Begriffe definieren:
 
 \begin{definition}[Graph]
@@ -380,8 +384,15 @@ Abbildung \ref{graph} illustriert einen Graphen mit
 \]
 und
 \[
-	E = \left\{  \{v_1,v_2\}, \{v_3,v_6\}, \{v_2,v_5\}, \{v_3,v_4\}  \right\}
+	E = \left\{  \{v_1,v_2\}, \{v_3,v_6\}, \{v_2,v_5\}, \{v_3,v_4\}  \right\}.
 \]
+
+\bigskip
+Um einen gerichteten Graphen zu erhalten, würden wir die Definition von $E$ so abändern, dass $E$ nicht eine Menge von Teilmengen von $V$ wäre, sondern eine Menge von Tupeln, so dass
+\[
+E \subset V \times V;
+\]
+gerichtete Graphen sind für diese Arbeit aber nicht weiter interessant. Dasselbe gilt für gewichtete Graphen; bei diesen wären entweder die Knoten gewichtet (das heisst, wir bräuchten eine zusätzliche Abbildung $w_v : V \rightarrow \mathbb{R}$) oder die Kanten gewichtet (durch eine entsprechende Abbildung $w_e : E \rightarrow \mathbb{R}$).
 
 \begin{figure}
 \caption{Ein Graph}
@@ -409,7 +420,14 @@ und
 Wenn alle Knoten eines Graphen $G$ so in zwei disjunkte Mengen $S_1$ und $S_2$ (Partitionsklassen oder {\sl shores}) aufgeteilt werden können, dass keine Kanten von $G$ zwischen Knoten aus $S_1$ und solchen aus $S_2$ existieren, sprechen wir von einem bipartiten Graphen.
 \end{definition}
 
-Abbildung \ref{bipartGraph} illustriert einen bipartiten Graphen.
+Abbildung \ref{bipartGraph} illustriert einen bipartiten Graphen mit
+\[
+	V = S_1 \cup S_2 = \{v_1,v_2,v_5,v_7,v_8\} \cup \{ v_3,v_4,v_6,v_9 \}
+\]
+und
+\[
+	E = \left\{  \{v_1,v_3\}, \{v_2,v_3\}, \{v_2,v_9\}, \{v_4,v_8\}, \{v_5,v_6\}, \{ v_6,v_8 \}, \{ v_7,v_9 \}  \right\}.
+\]
 
 \begin{figure}
 \caption{Ein bipartiter Graph}
@@ -428,8 +446,6 @@ Abbildung \ref{bipartGraph} illustriert einen bipartiten Graphen.
 \Vertex[x=7,y=0,L=$v_8$]{A8}
 \Vertex[x=8,y=4,L=$v_9$]{A9}
 
-
-
 \Edge(A1)(A3)
 \Edge(A2)(A3)
 \Edge(A2)(A9)
@@ -442,11 +458,289 @@ Abbildung \ref{bipartGraph} illustriert einen bipartiten Graphen.
 \end{center}
 \end{figure}
 
-Bipartite Graphen 
+\section{Zufallsgraphen}
+
+Wenn wir Eigenschaften von vielen Graphen betrachten wollen, sind Zufallsgraphen ein hilfreicher Denkansatz. Das grundlegende Prinzip ist, eine feste Menge von Knoten $V$ anzunehmen und dann aus allen möglichen Kombinationen von Kanten (sprich aus der Potenzmenge $\mathcal{P}(E)$) mit einer definierten Wahrscheinlichkeit auszuwählen.
+
+\bigskip
+Das verbreitete Modell der Erdös-Renyi-Graphen definiert eine Klasse von Graphen $G(n, p)$ mit einer Anzahl Knoten $n$ und einer gleichverteilten Wahrscheinlichkeit $p$, dass eine Kante zwischen zwei Knoten besteht \cite{erdos}.
+
+Da ein solcher Graph maximal $|\mathcal{P}(E)| = \binom{n}{2}$ Kanten haben kann, beträgt die Wahrscheinlichkeit, dass darin ein Graph mit genau $k$ Kanten auftritt, gegeben als
+\[
+\mathbb{P}(G) = p^k(1-p)^{\binom{n}{2}- k}.
+\]
+
+Es ist natürlich möglich, dass einzelne Knoten eines solchen Graphen gar keine Kanten haben, sprich das zusammenhängende Graph-Gebilde nicht alle $n$ Knoten beinhaltet. Diese Knoten werden aber trotzdem zum Graphen dazugezählt. \cite{erdos}
+
+Abbildung \ref{pdistribution} zeigt die Auftretenswahrscheinlichkeit eines Graphen in $G(10, p)$ abhängig von der Anzahl Kanten für $p = 0.2, 0.5, 0.8.$
+
+\begin{figure}
+\caption{Verteilung der Auftretenswahrscheinlichkeit eines Zufallsgraphen}
+\label{pdistribution}
+\begin{center}
+\begin{tikzpicture}
+  \begin{semilogyaxis}[ 
+    xlabel=$k$,
+    ylabel={$\mathbb{P}(G(10, p))$},
+	legend pos=north west
+  ] 
+    \addplot[mark=none,color=blue] coordinates {
+(0,4.35561429658803E-05)
+(1,1.08890357414701E-05)
+(2,2.72225893536752E-06)
+(3,6.8056473384188E-07)
+(4,1.7014118346047E-07)
+(5,4.25352958651175E-08)
+(6,1.06338239662794E-08)
+(7,2.65845599156984E-09)
+(8,6.64613997892461E-10)
+(9,1.66153499473115E-10)
+(10,4.15383748682788E-11)
+(11,1.03845937170697E-11)
+(12,2.59614842926743E-12)
+(13,6.49037107316857E-13)
+(14,1.62259276829214E-13)
+(15,4.05648192073035E-14)
+(16,1.01412048018259E-14)
+(17,2.53530120045647E-15)
+(18,6.33825300114118E-16)
+(19,1.58456325028529E-16)
+(20,3.96140812571324E-17)
+(21,9.90352031428309E-18)
+(22,2.47588007857077E-18)
+(23,6.18970019642693E-19)
+(24,1.54742504910673E-19)
+(25,3.86856262276683E-20)
+(26,9.67140655691708E-21)
+(27,2.41785163922927E-21)
+(28,6.04462909807317E-22)
+(29,1.51115727451829E-22)
+(30,3.77789318629573E-23)
+(31,9.44473296573934E-24)
+(32,2.36118324143483E-24)
+(33,5.90295810358708E-25)
+(34,1.47573952589677E-25)
+(35,3.68934881474193E-26)
+(36,9.22337203685482E-27)
+(37,2.30584300921371E-27)
+(38,5.76460752303426E-28)
+(39,1.44115188075857E-28)
+(40,3.60287970189641E-29)
+(41,9.00719925474104E-30)
+(42,2.25179981368526E-30)
+(43,5.62949953421315E-31)
+(44,1.40737488355329E-31)
+(45,3.51843720888322E-32)
+	};
+	\addlegendentry{$p = 0.2$}
+    \addplot[mark=none,color=green] coordinates {
+(0,2.8421709430404E-14)
+(1,2.8421709430404E-14)
+(2,2.8421709430404E-14)
+(3,2.8421709430404E-14)
+(4,2.8421709430404E-14)
+(5,2.8421709430404E-14)
+(6,2.8421709430404E-14)
+(7,2.8421709430404E-14)
+(8,2.8421709430404E-14)
+(9,2.8421709430404E-14)
+(10,2.8421709430404E-14)
+(11,2.8421709430404E-14)
+(12,2.8421709430404E-14)
+(13,2.8421709430404E-14)
+(14,2.8421709430404E-14)
+(15,2.8421709430404E-14)
+(16,2.8421709430404E-14)
+(17,2.8421709430404E-14)
+(18,2.8421709430404E-14)
+(19,2.8421709430404E-14)
+(20,2.8421709430404E-14)
+(21,2.8421709430404E-14)
+(22,2.8421709430404E-14)
+(23,2.8421709430404E-14)
+(24,2.8421709430404E-14)
+(25,2.8421709430404E-14)
+(26,2.8421709430404E-14)
+(27,2.8421709430404E-14)
+(28,2.8421709430404E-14)
+(29,2.8421709430404E-14)
+(30,2.8421709430404E-14)
+(31,2.8421709430404E-14)
+(32,2.8421709430404E-14)
+(33,2.8421709430404E-14)
+(34,2.8421709430404E-14)
+(35,2.8421709430404E-14)
+(36,2.8421709430404E-14)
+(37,2.8421709430404E-14)
+(38,2.8421709430404E-14)
+(39,2.8421709430404E-14)
+(40,2.8421709430404E-14)
+(41,2.8421709430404E-14)
+(42,2.8421709430404E-14)
+(43,2.8421709430404E-14)
+(44,2.8421709430404E-14)
+(45,2.8421709430404E-14)
+	};
+	\addlegendentry{$p = 0.5$}
+    \addplot[mark=none,color=red] coordinates {
+(0,3.51843720888316E-32)
+(1,1.40737488355326E-31)
+(2,5.62949953421306E-31)
+(3,2.25179981368522E-30)
+(4,9.0071992547409E-30)
+(5,3.60287970189636E-29)
+(6,1.44115188075855E-28)
+(7,5.76460752303418E-28)
+(8,2.30584300921367E-27)
+(9,9.2233720368547E-27)
+(10,3.68934881474188E-26)
+(11,1.47573952589675E-25)
+(12,5.90295810358701E-25)
+(13,2.36118324143481E-24)
+(14,9.44473296573923E-24)
+(15,3.77789318629569E-23)
+(16,1.51115727451828E-22)
+(17,6.04462909807311E-22)
+(18,2.41785163922925E-21)
+(19,9.67140655691699E-21)
+(20,3.8685626227668E-20)
+(21,1.54742504910672E-19)
+(22,6.18970019642688E-19)
+(23,2.47588007857075E-18)
+(24,9.90352031428301E-18)
+(25,3.96140812571321E-17)
+(26,1.58456325028528E-16)
+(27,6.33825300114113E-16)
+(28,2.53530120045646E-15)
+(29,1.01412048018258E-14)
+(30,4.05648192073033E-14)
+(31,1.62259276829213E-13)
+(32,6.49037107316854E-13)
+(33,2.59614842926741E-12)
+(34,1.03845937170697E-11)
+(35,4.15383748682787E-11)
+(36,1.66153499473115E-10)
+(37,6.64613997892459E-10)
+(38,2.65845599156984E-09)
+(39,1.06338239662794E-08)
+(40,4.25352958651174E-08)
+(41,1.7014118346047E-07)
+(42,6.8056473384188E-07)
+(43,2.72225893536752E-06)
+(44,1.08890357414701E-05)
+(45,4.35561429658803E-05)
+	};
+	\addlegendentry{$p = 0.8$}
+  \end{semilogyaxis}
+\end{tikzpicture}
+\end{center}
+\end{figure}
+
+\floatname{algorithm}{Algorithmus}
+\renewcommand{\algorithmicrequire}{\textbf{Eingabe:}}
+\renewcommand{\algorithmicensure}{\textbf{Ausgabe:}}
 
 
+\section{Generierung von Zufallsgraphen}
+
+Zufallsgraphen zu generieren ist im Grunde genommen ziemlich einfach, wie Algorithmus~\ref{gen.naive} zeigt \cite{fastalgo}. Das Problem ist allerdings ebenfalls offensichtlich: Die Komplexitätsklasse dieses Algorithmus ist $\mathcal{O}(n^2)$.
+
+\begin{algorithm}
+\caption{Ein naiver Zufallsgraphen-Generator}
+\label{gen.naive}
+\begin{algorithmic}
+\Require
+	\Statex Anzahl Knoten $n$,
+	\Statex Kantenwahrscheinlichkeit $p$.
+\Ensure
+	\Statex Zufallsgraph $G = (V, E)$.
+\Statex
+\For{$i \gets 1, n$}
+\For{$j \gets i+1, n$}
+\State $\theta\gets$ gleichverteilte Zufallszahl
+\If{$\theta < p$}
+\State $E \gets E \cup \{(v_i,v_j)\}$
+\EndIf
+\EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm}
 
 
+Um diese technische Suboptimalität zu lösen, verfolgen Nobari, Lu, Karras und Bressan in \cite{fastalgo} folgende Idee:
+
+\begin{enumerate}
+\item Jede Kante $(v_i, v_j)$ (und darum auch $\{v_i, v_j\}$) kann als $e_k$ ausgedrückt werden durch die Beziehungen
+\[
+i = \left\lfloor\frac k v \right\rfloor
+\]
+und
+\[
+j = k \mod v.
+\]
+
+\item Damit kann Algorithmus~\ref{gen.naive} $\in \mathcal{O}(n^2)$ zu einem Algorithmus mit linearer Laufzeitkomplexität $\mathcal{O}(|E|)$ umgeschrieben werden (siehe Algorithmus~\ref{gen.linear}). Da aber $|E| = \binom{n}{2}$ gilt, nützt uns das momentan noch nicht viel.
+
+\begin{algorithm}
+\caption{Ein umgeformter naiver Zufallsgraphen-Generator}
+\label{gen.linear}
+\begin{algorithmic}
+\Require
+	\Statex Kantenwahrscheinlichkeit $p$.
+\Ensure
+	\Statex Zufallsgraph $G = (V, E)$.
+\Statex
+\For{$i \gets 1, |E|$}
+\State $\theta\gets$ gleichverteilte Zufallszahl
+\If{$\theta < p$}
+\State $E \gets E \cup \{e_i\}$
+\EndIf
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+\item Der eigentliche Trick folgt der Erkenntnis, dass die Wahrscheinlichkeitsverteilung einer Folge von gleichverteilten Zufallsentscheidungen, die zum selben Resultat führen, im Grunde einer geometrischen Verteilung entspricht. Dadurch können wir die Wahrscheinlichkeit, dass die nächsten $s$ Kanten des Graphen mit einer jeweiligen Wahrscheinlichkeit von $1-p$ ausgelassen werden, ausdrücken als
+\[
+	f(s) = p \cdot (1-p)^s,
+\]
+und die kumulative Verteilungsfunktion wäre (\cite{fastalgo})
+\[
+	F(s) = \sum\limits_{i=0}^s f(i) = 1 - (1-p)^{s+1}.
+\]
+Dies bedeutet, dass der Algorithmus nach jedem Setzen einer Kante eine einzige neue Zufallszahl $\alpha$ generiert, mit welcher er bestimmen kann, wieviele Kanten $s$ ausgelassen werden können (nämlich die kleinste ganze Zahl, für welche
+\[
+F(s) \ge \alpha
+\]
+gilt). Durch ein paar Takte Algebra können wir nach $s$ auflösen und bekommen eine explizite Funktion (\cite{fastalgo}):
+\[
+	s(\alpha) = \max(0, \left\lceil \log_{1-p}\alpha\right\rceil - 1)
+\]
+
+Damit können wir unseren Algorithmus optimieren (siehe Algorithmus~\ref{gen.opt}). Es liegt nun auf der Hand, dass dieser Algorithmus desto schneller ist, je kleiner $p$ gewählt wird. \cite{fastalgo} versucht darum, der durch die Berechnung des Logarithmus gestiegenen mathematischen Komplexität Herr zu werden, indem eine Menge an Logarithmus-Werten vorberechnet und wiederverwendet werden. Ausserdem werden noch Optimierungen vorgenommen, um den Algorithmus auf Grafik-Prozessoren laufen zu lassen. Dies ist für uns allerdings nicht weiter spannend, und darum wollen wir es bei der einfachen Optimierung wie eben gesehen belassen.
+
+\begin{algorithm}
+\caption{Ein Zufallsgraphen-Generator mit Edge Skipping}
+\label{gen.opt}
+\begin{algorithmic}
+\Require
+	\Statex Kantenwahrscheinlichkeit $p$.
+\Ensure
+	\Statex Zufallsgraph $G = (V, E)$.
+\Statex
+\Statex $i \gets -1$
+\While{$i < |E|$}
+\State $\alpha\gets$ gleichverteilte Zufallszahl
+\State $s \gets \max(0, \left\lceil \log_{1-p}\alpha\right\rceil - 1)$
+\State $i \gets i + s + 1$
+\State $E \gets E \cup \{e_i\}$
+\EndWhile
+\State Entferne die letzte Kante
+\end{algorithmic}
+\end{algorithm}
+
+\end{enumerate}
+
+\section{Generierung von bipartiten Zufallsgraphen}
 
 
 

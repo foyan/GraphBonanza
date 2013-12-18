@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{BKK}
 Hans-Joachim Böckenhauer, Dennis Komm, Rastislav Královič, Richard
@@ -40,10 +40,22 @@ Stefan Dobrev, Rastislav Královič, and Dana Pardubská.
 \newblock {\em RAIRO - Theoretical Informatics and Applications}, 43:585--613,
   7 2009.
 
+\bibitem{erdos}
+P.~Erd\"{o}s and A.~R\'{e}nyi.
+\newblock On random graphs i.
+\newblock {\em Publicationes Mathematicae Debrecen}, 6:290, 1959.
+
 \bibitem{spaccamela}
 A.~Marchetti-Spaccamela and C.~Vercellis.
 \newblock Stochastic on-line knapsack problems.
 \newblock {\em Mathematical Programming}, 68(1-3):73--104, 1995.
+
+\bibitem{fastalgo}
+Sadegh Nobari, Xuesong Lu, Panagiotis Karras, and St{\'e}phane Bressan.
+\newblock Fast random graph generation.
+\newblock In {\em Proceedings of the 14th International Conference on Extending
+  Database Technology}, EDBT/ICDT '11, pages 331--342, New York, NY, USA, 2011.
+  ACM.
 
 \bibitem{Sleator}
 Daniel~D. Sleator and Robert~E. Tarjan.
