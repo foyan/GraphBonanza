@@ -362,7 +362,7 @@ Spannenderweise wird die Competitive Ratio für $b \in \mathcal{O}(1)$ nicht wes
 
 
 
-\chapter{Online Graph Coloring von bipartiten Graphen}
+\chapter{Online Coloring von bipartiten Graphen}
 
 \section{Modelle von (bipartiten) Graphen}
 
@@ -765,7 +765,7 @@ Das Auffinden einer gültigen Färbung für einen Graphen wird als Graphenfärbe
 Ausserdem liegt auf der Hand, dass ein bipartiter Graph stets $2$-färbbar ist.
 
 
-\section{Online Graph Coloring}
+\section{Online Graph Coloring: First Fit-Algorithmus}
 
 Wir wollen das Graphenfärbeproblem nun als Online-Problem betrachten. Dafür stellen wir uns vor, dass der zu färbende Graph nicht komplett vorliegt, sondern jeder Knoten einzeln präsentiert wird. Jeder Knoten muss im Moment seiner Präsentation eingefärbt werden. Alle Kanten zwischen bereits aufgedeckten Knoten sind bekannt, alle anderen jedoch nicht. \cite{lovasz}
 
@@ -879,11 +879,501 @@ Der kapitale Fehler passierte bereits beim Färben von $v_1$. Es gab anhand der 
 
 \end{figure}
 
+\bigskip
+
+Das Online Coloring-Problem hat keine konstante Competitive Ratio (\cite{bipartite}), wie in \cite{gyarfas} gezeigt wird. Für den Nachvollzug wollen wir uns vergegenwärtigen, dass jeder Baum ein bipartiter Graph ist, weil alle Knoten einer Ebene nur mit Knoten der jeweiligen nächsten oder vorhergehenden Ebene verknüpft sein können, wie in Abbildung~\ref{tree} skizziert.
+
+\begin{figure}
+\caption{Ein Baum}
+\label{tree}
+\begin{center}
+\begin{tikzpicture}[scale=0.5, transform shape]
+\Vertex[x=8, y=8]{A}
+\Vertex[x=4, y=6]{B}
+\Vertex[x=8, y=6]{C}
+\Vertex[x=11, y=6]{D}
+\Vertex[x=2, y=4]{E}
+\Vertex[x=4, y=4]{F}
+\Vertex[x=6, y=4]{G}
+\Vertex[x=8, y=4]{H}
+\Vertex[x=10, y=4]{I}
+\Vertex[x=12, y=4]{J}
+
+\Vertex[x=2,y=2]{l1}
+\Vertex[x=4,y=2]{l2}
+\Vertex[x=6,y=2]{l3}
+\Vertex[x=8,y=2]{l4}
+\Vertex[x=10,y=2]{l5}
+\Vertex[x=12,y=2]{l6}
+
+
+\Edge(A)(B)
+\Edge(A)(C)
+\Edge(A)(D)
+
+\Edge(B)(E)
+\Edge(B)(F)
+\Edge(B)(G)
+
+\Edge(C)(H)
+
+\Edge(D)(I)
+\Edge(D)(J)
+
+\Edge(E)(l1)
+\Edge(F)(l2)
+\Edge(G)(l3)
+\Edge(H)(l4)
+\Edge(I)(l5)
+\Edge(J)(l6)
+
+\AddVertexColor{blue}{A,E,F,G,H,I,J}
+\AddVertexColor{red}{B,C,D,l1,l2,l3,l4,l5,l6}
+
+\end{tikzpicture}
+\end{center}
+\end{figure}
+
+Wir überlegen uns nun eine rekursive Folge von Bäumen:
+\begin{itemize}
+\item Der Baum $T_1$ besitzt nur einen Knoten.
+\item Der Baum $T_n$ besteht aus der Vereinigung von exakten Kopien aller Bäume $T_1, \dots T_{n-1}$ sowie einem zusätzlichen Knoten, der eine Kante zu den jeweiligen Wurzelknoten all dieser Bäume hat. Abbildung~\ref{tree.rec} verdeutlicht dies.
+\end{itemize}
+
+\begin{figure}
+\caption{Die Folge $T_1, \dots, T_6$}
+\label{tree.rec}
+\begin{center}
+\begin{tikzpicture}[scale=0.5, transform shape]
+
+\Vertex[x=0, y=0,L=$$]{T1x}
+
+\Vertex[x=2, y=2,L=$$]{T2x}
+\Vertex[x=2, y=0,L=$$]{T2T1x}
+\Edge(T2x)(T2T1x)
+
+\Vertex[x=4, y=0,L=$$]{T3T1x}
+\Vertex[x=6, y=2,L=$$]{T3T2x}
+\Vertex[x=6, y=0,L=$$]{T3T2T1x}
+\Edge(T3T2x)(T3T2T1x)
+\Vertex[x=5, y=4,L=$$]{T3x}
+\Edge(T3T1x)(T3x)
+\Edge(T3T2x)(T3x)
+
+\Vertex[x=8, y=0,L=$$]{T4T1x}
+\Vertex[x=10, y=2,L=$$]{T4T2x}
+\Vertex[x=10, y=0,L=$$]{T4T2T1x}
+\Edge(T4T2x)(T4T2T1x)
+\Vertex[x=12, y=0,L=$$]{T4T3T1x}
+\Vertex[x=14, y=2,L=$$]{T4T3T2x}
+\Vertex[x=14, y=0,L=$$]{T4T3T2T1x}
+\Edge(T4T3T2x)(T4T3T2T1x)
+\Vertex[x=13, y=4,L=$$]{T4T3x}
+\Edge(T4T3T1x)(T4T3x)
+\Edge(T4T3T2x)(T4T3x)
+\Vertex[x=11,y=6,L=$x$]{T4x}
+\Edge(T4x)(T4T3x)
+\Edge(T4x)(T4T2x)
+\Edge(T4x)(T4T1x)
+
+
+
+\Vertex[x=16, y=0,L=$$]{T5T1x}
+
+\Vertex[x=18, y=2,L=$$]{T5T2x}
+\Vertex[x=18, y=0,L=$$]{T5T2T1x}
+\Edge(T5T2x)(T5T2T1x)
+
+\Vertex[x=20, y=0,L=$$]{T5T3T1x}
+\Vertex[x=22, y=2,L=$$]{T5T3T2x}
+\Vertex[x=22, y=0,L=$$]{T5T3T2T1x}
+\Edge(T5T3T2x)(T5T3T2T1x)
+\Vertex[x=21, y=4,L=$$]{T5T3x}
+\Edge(T5T3T1x)(T5T3x)
+\Edge(T5T3T2x)(T5T3x)
+
+\Vertex[x=24, y=0,L=$$]{T5T4T1x}
+\Vertex[x=26, y=2,L=$$]{T5T4T2x}
+\Vertex[x=26, y=0,L=$$]{T5T4T2T1x}
+\Edge(T5T4T2x)(T5T4T2T1x)
+\Vertex[x=28, y=0,L=$$]{T5T4T3T1x}
+\Vertex[x=30, y=2,L=$$]{T5T4T3T2x}
+\Vertex[x=30, y=0,L=$$]{T5T4T3T2T1x}
+\Edge(T5T4T3T2x)(T5T4T3T2T1x)
+\Vertex[x=29, y=4,L=$$]{T5T4T3x}
+\Edge(T5T4T3T1x)(T5T4T3x)
+\Edge(T5T4T3T2x)(T5T4T3x)
+\Vertex[x=27,y=6,L=$$]{T5T4x}
+\Edge(T5T4x)(T5T4T3x)
+\Edge(T5T4x)(T5T4T2x)
+\Edge(T5T4x)(T5T4T1x)
+
+\Vertex[x=20,y=8,L=$$]{T5x}
+\Edge(T5x)(T5T4x)
+\Edge(T5x)(T5T3x)
+\Edge(T5x)(T5T2x)
+\Edge(T5x)(T5T1x)
+
+
+
+\Vertex[x=0, y=0-14,L=$$]{T6T1x}
+
+\Vertex[x=2, y=2-14,L=$$]{T6T2x}
+\Vertex[x=2, y=0-14,L=$$]{T6T2T1x}
+\Edge(T6T2x)(T6T2T1x)
+
+\Vertex[x=4, y=0-14,L=$$]{T6T3T1x}
+\Vertex[x=6, y=2-14,L=$$]{T6T3T2x}
+\Vertex[x=6, y=0-14,L=$$]{T6T3T2T1x}
+\Edge(T6T3T2x)(T6T3T2T1x)
+\Vertex[x=5, y=4-14,L=$$]{T6T3x}
+\Edge(T6T3T1x)(T6T3x)
+\Edge(T6T3T2x)(T6T3x)
+
+\Vertex[x=8, y=0-14,L=$$]{T6T4T1x}
+\Vertex[x=10, y=2-14,L=$$]{T6T4T2x}
+\Vertex[x=10, y=0-14,L=$$]{T6T4T2T1x}
+\Edge(T6T4T2x)(T6T4T2T1x)
+\Vertex[x=12, y=0-14,L=$$]{T6T4T3T1x}
+\Vertex[x=14, y=2-14,L=$$]{T6T4T3T2x}
+\Vertex[x=14, y=0-14,L=$$]{T6T4T3T2T1x}
+\Edge(T6T4T3T2x)(T6T4T3T2T1x)
+\Vertex[x=13, y=4-14,L=$$]{T6T4T3x}
+\Edge(T6T4T3T1x)(T6T4T3x)
+\Edge(T6T4T3T2x)(T6T4T3x)
+\Vertex[x=11,y=6-14,L=$$]{T6T4x}
+\Edge(T6T4x)(T6T4T3x)
+\Edge(T6T4x)(T6T4T2x)
+\Edge(T6T4x)(T6T4T1x)
+
+
+
+\Vertex[x=16, y=0-14,L=$$]{T6T5T1x}
+
+\Vertex[x=18, y=2-14,L=$$]{T6T5T2x}
+\Vertex[x=18, y=0-14,L=$$]{T6T5T2T1x}
+\Edge(T6T5T2x)(T6T5T2T1x)
+
+\Vertex[x=20, y=0-14,L=$$]{T6T5T3T1x}
+\Vertex[x=22, y=2-14,L=$$]{T6T5T3T2x}
+\Vertex[x=22, y=0-14,L=$$]{T6T5T3T2T1x}
+\Edge(T6T5T3T2x)(T6T5T3T2T1x)
+\Vertex[x=21, y=4-14,L=$$]{T6T5T3x}
+\Edge(T6T5T3T1x)(T6T5T3x)
+\Edge(T6T5T3T2x)(T6T5T3x)
+
+\Vertex[x=24, y=0-14,L=$$]{T6T5T4T1x}
+\Vertex[x=26, y=2-14,L=$$]{T6T5T4T2x}
+\Vertex[x=26, y=0-14,L=$$]{T6T5T4T2T1x}
+\Edge(T6T5T4T2x)(T6T5T4T2T1x)
+\Vertex[x=28, y=0-14,L=$$]{T6T5T4T3T1x}
+\Vertex[x=30, y=2-14,L=$$]{T6T5T4T3T2x}
+\Vertex[x=30, y=0-14,L=$$]{T6T5T4T3T2T1x}
+\Edge(T6T5T4T3T2x)(T6T5T4T3T2T1x)
+\Vertex[x=29, y=4-14,L=$$]{T6T5T4T3x}
+\Edge(T6T5T4T3T1x)(T6T5T4T3x)
+\Edge(T6T5T4T3T2x)(T6T5T4T3x)
+\Vertex[x=27,y=6-14,L=$$]{T6T5T4x}
+\Edge(T6T5T4x)(T6T5T4T3x)
+\Edge(T6T5T4x)(T6T5T4T2x)
+\Edge(T6T5T4x)(T6T5T4T1x)
+
+\Vertex[x=20,y=8-14,L=$$]{T6T5x}
+\Edge(T6T5x)(T6T5T4x)
+\Edge(T6T5x)(T6T5T3x)
+\Edge(T6T5x)(T6T5T2x)
+\Edge(T6T5x)(T6T5T1x)
+
+\Vertex[x=6,y=10-14,L=$x$]{T6x}
+
+\Edge(T6x)(T6T5x)
+\Edge(T6x)(T6T4x)
+\Edge(T6x)(T6T3x)
+\Edge(T6x)(T6T2x)
+\Edge(T6x)(T6T1x)
+
+
+\AddVertexColor{black}{T1x,T2x,T3x,T4x,T5x,T6x}
+
+\end{tikzpicture}
+\end{center}
+\end{figure}
+
+Wenn wir nun die Knoten dieser Bäume in einer geeigneten Reihenfolge präsentieren, maximieren wir die Menge an verdeckter Information, welche jeden Online-Algorithmus scheitern lassen wird. Für den besprochenen First Fit-Algorithmus~\ref{algo.firstfit} gehen wir beispielsweise folgendermassen vor:
+\begin{enumerate}
+\item Wir präsentieren zuerst alle Knoten, welche durch rekursives Kopieren von $T_1$ entstanden sind -- diese bilden auch gleichzeitig alle Blattknoten aller Bäume. Da diese Knoten natürlich keine gemeinsamen Kanten haben, wird der Algorithmus allen dieselbe Farbe zuweisen -- beispielsweise Blau.
+
+\item Nun präsentieren wir alle Knoten, welche durch rekursives Kopieren des für $T_2$ hinzugefügten Knotens entstanden sind. (Wenn wir uns die im vorhergehenden Schritt präsentierten Knoten aus den Bäumen wegdenken würden, würden die $T_2$-originären Knoten die neue Menge an Blattknoten bilden.) Der Algorithmus kann diese Knoten nicht blau färben, da sie alle eine Kante zu schon präsentierten Knoten haben -- ergo bekommen sie die Farbe Rot.
+
+\item Den zweiten Schritt wiederholen wir nun für die in $T_3, T_4,\dots$ hinzugefügten und in jeden weiteren Baum kopierten Knoten. Schon bei $T_3$ stellen wir fest, dass der dazumal hinzugefügte Knoten nur eine dritte Farbe zugeordnet bekommen kann, da er Kanten zu je einem der in den beiden vorangegangenen Schritten präsentierten Knoten hat.
+\end{enumerate}
+
+Die Abbildung~\ref{tree.rec.colored} veranschaulicht das Resultat. Es ist nun offensichtlich, dass der Algorithmus für jeden Baum $T_n$ genau $n$ Farben benötigt. Da jeder dieser Bäume $2^{n-1}$ Knoten hat, und es unendlich viele solcher Bäume gibt (das Spiel lässt sich bei genügend Platz und Zeit endlos weitertreiben), konstatieren wir eine nicht-konstante Competitive Ratio von
+\[
+	r = \frac {\log_2 k + 1} {2}
+\]
+in Abhängigkeit der Anzahl Knoten $k$. Gleichzeitig ist darum $\log_2 k+1$ eine untere Schranke für die minimale Anzahl Farben von Online-Algorithmen auf bipartiten Graphen -- allerdings eine zu optimistische, denn \cite{bipartite} erhöht diese auf
+\[
+	1.13747 \cdot \log_2 k.
+\]
+
+
+
+\begin{figure}
+\caption{First Fit auf $T_1, \dots, T_6$}
+\label{tree.rec.colored}
+\begin{center}
+\begin{tikzpicture}[scale=0.5, transform shape]
+
+\Vertex[x=0, y=0,L=$$]{T1x}
+
+\Vertex[x=2, y=2,L=$$]{T2x}
+\Vertex[x=2, y=0,L=$$]{T2T1x}
+\Edge(T2x)(T2T1x)
+
+\Vertex[x=4, y=0,L=$$]{T3T1x}
+\Vertex[x=6, y=2,L=$$]{T3T2x}
+\Vertex[x=6, y=0,L=$$]{T3T2T1x}
+\Edge(T3T2x)(T3T2T1x)
+\Vertex[x=5, y=4,L=$$]{T3x}
+\Edge(T3T1x)(T3x)
+\Edge(T3T2x)(T3x)
+
+\Vertex[x=8, y=0,L=$$]{T4T1x}
+\Vertex[x=10, y=2,L=$$]{T4T2x}
+\Vertex[x=10, y=0,L=$$]{T4T2T1x}
+\Edge(T4T2x)(T4T2T1x)
+\Vertex[x=12, y=0,L=$$]{T4T3T1x}
+\Vertex[x=14, y=2,L=$$]{T4T3T2x}
+\Vertex[x=14, y=0,L=$$]{T4T3T2T1x}
+\Edge(T4T3T2x)(T4T3T2T1x)
+\Vertex[x=13, y=4,L=$$]{T4T3x}
+\Edge(T4T3T1x)(T4T3x)
+\Edge(T4T3T2x)(T4T3x)
+\Vertex[x=11,y=6,L=$x$]{T4x}
+\Edge(T4x)(T4T3x)
+\Edge(T4x)(T4T2x)
+\Edge(T4x)(T4T1x)
+
+
+
+\Vertex[x=16, y=0,L=$$]{T5T1x}
+
+\Vertex[x=18, y=2,L=$$]{T5T2x}
+\Vertex[x=18, y=0,L=$$]{T5T2T1x}
+\Edge(T5T2x)(T5T2T1x)
+
+\Vertex[x=20, y=0,L=$$]{T5T3T1x}
+\Vertex[x=22, y=2,L=$$]{T5T3T2x}
+\Vertex[x=22, y=0,L=$$]{T5T3T2T1x}
+\Edge(T5T3T2x)(T5T3T2T1x)
+\Vertex[x=21, y=4,L=$$]{T5T3x}
+\Edge(T5T3T1x)(T5T3x)
+\Edge(T5T3T2x)(T5T3x)
+
+\Vertex[x=24, y=0,L=$$]{T5T4T1x}
+\Vertex[x=26, y=2,L=$$]{T5T4T2x}
+\Vertex[x=26, y=0,L=$$]{T5T4T2T1x}
+\Edge(T5T4T2x)(T5T4T2T1x)
+\Vertex[x=28, y=0,L=$$]{T5T4T3T1x}
+\Vertex[x=30, y=2,L=$$]{T5T4T3T2x}
+\Vertex[x=30, y=0,L=$$]{T5T4T3T2T1x}
+\Edge(T5T4T3T2x)(T5T4T3T2T1x)
+\Vertex[x=29, y=4,L=$$]{T5T4T3x}
+\Edge(T5T4T3T1x)(T5T4T3x)
+\Edge(T5T4T3T2x)(T5T4T3x)
+\Vertex[x=27,y=6,L=$$]{T5T4x}
+\Edge(T5T4x)(T5T4T3x)
+\Edge(T5T4x)(T5T4T2x)
+\Edge(T5T4x)(T5T4T1x)
+
+\Vertex[x=20,y=8,L=$$]{T5x}
+\Edge(T5x)(T5T4x)
+\Edge(T5x)(T5T3x)
+\Edge(T5x)(T5T2x)
+\Edge(T5x)(T5T1x)
+
+
+
+\Vertex[x=0, y=0-14,L=$$]{T6T1x}
+
+\Vertex[x=2, y=2-14,L=$$]{T6T2x}
+\Vertex[x=2, y=0-14,L=$$]{T6T2T1x}
+\Edge(T6T2x)(T6T2T1x)
+
+\Vertex[x=4, y=0-14,L=$$]{T6T3T1x}
+\Vertex[x=6, y=2-14,L=$$]{T6T3T2x}
+\Vertex[x=6, y=0-14,L=$$]{T6T3T2T1x}
+\Edge(T6T3T2x)(T6T3T2T1x)
+\Vertex[x=5, y=4-14,L=$$]{T6T3x}
+\Edge(T6T3T1x)(T6T3x)
+\Edge(T6T3T2x)(T6T3x)
+
+\Vertex[x=8, y=0-14,L=$$]{T6T4T1x}
+\Vertex[x=10, y=2-14,L=$$]{T6T4T2x}
+\Vertex[x=10, y=0-14,L=$$]{T6T4T2T1x}
+\Edge(T6T4T2x)(T6T4T2T1x)
+\Vertex[x=12, y=0-14,L=$$]{T6T4T3T1x}
+\Vertex[x=14, y=2-14,L=$$]{T6T4T3T2x}
+\Vertex[x=14, y=0-14,L=$$]{T6T4T3T2T1x}
+\Edge(T6T4T3T2x)(T6T4T3T2T1x)
+\Vertex[x=13, y=4-14,L=$$]{T6T4T3x}
+\Edge(T6T4T3T1x)(T6T4T3x)
+\Edge(T6T4T3T2x)(T6T4T3x)
+\Vertex[x=11,y=6-14,L=$$]{T6T4x}
+\Edge(T6T4x)(T6T4T3x)
+\Edge(T6T4x)(T6T4T2x)
+\Edge(T6T4x)(T6T4T1x)
+
+
+
+\Vertex[x=16, y=0-14,L=$$]{T6T5T1x}
+
+\Vertex[x=18, y=2-14,L=$$]{T6T5T2x}
+\Vertex[x=18, y=0-14,L=$$]{T6T5T2T1x}
+\Edge(T6T5T2x)(T6T5T2T1x)
+
+\Vertex[x=20, y=0-14,L=$$]{T6T5T3T1x}
+\Vertex[x=22, y=2-14,L=$$]{T6T5T3T2x}
+\Vertex[x=22, y=0-14,L=$$]{T6T5T3T2T1x}
+\Edge(T6T5T3T2x)(T6T5T3T2T1x)
+\Vertex[x=21, y=4-14,L=$$]{T6T5T3x}
+\Edge(T6T5T3T1x)(T6T5T3x)
+\Edge(T6T5T3T2x)(T6T5T3x)
+
+\Vertex[x=24, y=0-14,L=$$]{T6T5T4T1x}
+\Vertex[x=26, y=2-14,L=$$]{T6T5T4T2x}
+\Vertex[x=26, y=0-14,L=$$]{T6T5T4T2T1x}
+\Edge(T6T5T4T2x)(T6T5T4T2T1x)
+\Vertex[x=28, y=0-14,L=$$]{T6T5T4T3T1x}
+\Vertex[x=30, y=2-14,L=$$]{T6T5T4T3T2x}
+\Vertex[x=30, y=0-14,L=$$]{T6T5T4T3T2T1x}
+\Edge(T6T5T4T3T2x)(T6T5T4T3T2T1x)
+\Vertex[x=29, y=4-14,L=$$]{T6T5T4T3x}
+\Edge(T6T5T4T3T1x)(T6T5T4T3x)
+\Edge(T6T5T4T3T2x)(T6T5T4T3x)
+\Vertex[x=27,y=6-14,L=$$]{T6T5T4x}
+\Edge(T6T5T4x)(T6T5T4T3x)
+\Edge(T6T5T4x)(T6T5T4T2x)
+\Edge(T6T5T4x)(T6T5T4T1x)
+
+\Vertex[x=20,y=8-14,L=$$]{T6T5x}
+\Edge(T6T5x)(T6T5T4x)
+\Edge(T6T5x)(T6T5T3x)
+\Edge(T6T5x)(T6T5T2x)
+\Edge(T6T5x)(T6T5T1x)
+
+\Vertex[x=6,y=10-14,L=$x$]{T6x}
+
+\Edge(T6x)(T6T5x)
+\Edge(T6x)(T6T4x)
+\Edge(T6x)(T6T3x)
+\Edge(T6x)(T6T2x)
+\Edge(T6x)(T6T1x)
+
+
+\AddVertexColor{blue}{T1x,T2T1x,T3T1x,T3T2T1x, T4T1x,T4T2T1x,T4T3T1x,T4T3T2T1x}
+\AddVertexColor{blue}{T5T1x,T5T2T1x,T5T3T1x,T5T3T2T1x, T5T4T1x,T5T4T2T1x,T5T4T3T1x,T5T4T3T2T1x}
+
+\AddVertexColor{blue}{T6T1x,T6T2T1x,T6T3T1x,T6T3T2T1x, T6T4T1x,T6T4T2T1x,T6T4T3T1x,T6T4T3T2T1x}
+\AddVertexColor{blue}{T6T5T1x,T6T5T2T1x,T6T5T3T1x,T6T5T3T2T1x, T6T5T4T1x,T6T5T4T2T1x,T6T5T4T3T1x,T6T5T4T3T2T1x}
+
+\AddVertexColor{red}{T2x}
+\AddVertexColor{red}{T3T2x}
+\AddVertexColor{red}{T4T3T2x,T4T2x}
+\AddVertexColor{red}{T5T4T3T2x,T5T4T2x,T5T3T2x,T5T2x}
+\AddVertexColor{red}{T6T5T4T3T2x,T6T5T4T2x,T6T5T3T2x,T6T5T2x,T6T4T3T2x,T6T4T2x,T6T3T2x,T6T2x}
+
+\AddVertexColor{green}{T3x}
+\AddVertexColor{green}{T4T3x}
+\AddVertexColor{green}{T5T4T3x,T5T3x}
+\AddVertexColor{green}{T6T5T4T3x,T6T5T3x,T6T4T3x,T6T3x}
+
+\AddVertexColor{violet}{T4x}
+\AddVertexColor{violet}{T5T4x}
+\AddVertexColor{violet}{T6T5T4x,T6T4x}
+
+\AddVertexColor{brown}{T5x,T6T5x}
+
+\AddVertexColor{orange}{T6x}
+
+
+\end{tikzpicture}
+\end{center}
+\end{figure}
+
+
+\chapter{Online Coloring von bipartiten Graphen mit Advice}
+
+Im vorhergehenden Kapitel haben wir festgestellt, dass Online Coloring auf bipartiten Graphen nicht kompetitiv ist. Wir wollen nun betrachten, wie sich der Einsatz eines Orakels im Sinne der Advice Complexity auf die Kompetivität auswirken würde -- und hoffen auf ähnlich erstaunliche Ergebnisse wie im Falle von {\sc SimpleKnapsack}.
+
+\section{Online Coloring Algorithmus mit Advice}
+
+\bigskip
+Das Hauptproblem von Online-Färbe-Algorithmen scheint zu sein, dass es Situationen während der Präsentation der Knoten geben kann, welche zu gleichen Färbungen von Knoten auf beiden Shores führen können, wie wir durch Betrachten der Abbildungen~\ref{bipart.greedy} und \ref{bipart.greedy.besser} rekapitulieren können. Dies ist einzig der fehlenden Information über die Zukunft geschuldet. Ein allenfalls eingesetztes Orakel sollte also in genau diesem Aspekt helfen können. Die benötigte Unterstützung beschränkt sich aber auf ein schmales Band: um eine konstante Competitive Ratio $\frac k 2$ zu erreichen (sprich: $k$ Farben zuzulassen), ist einzig wichtig, die Farben $k$ und $k-1$ nicht durcheinander zu bringen \cite{bipartite}.
+
+\bigskip
+Dies führt zum Algorithmus~\ref{algo.advice}, welcher wie der First Fit-Algorithmus immer die niedrigstmögliche Farbe zuordnet. Falls aber für einen Knoten die einzigen beiden möglichen Farben $k-1$ und $k$ sind, fragt er das Orakel, wie der Knoten gefärbt werden soll. Damit wird sichergestellt, dass alle Knoten mit der Farbe $k-1$ auf der einen Seite und alle Knoten mit der Farbe $k$ auf der anderen Seite des Graphen sind.\footnote{Es mag bemerkt werden, dass die Ausgestaltung des Algorithmus trotz dessen enger Verwandtschaft zum First Fit-Algorithmus völlig anders ist. Der Grund liegt darin, dass durch die Eingabe von $k$ die Menge an möglichen Farben beschränkt ist; dadurch kann darüber iteriert werden, was die Auswahl der niedrigstmöglichen Farbe vereinfacht.}
+
+
+\begin{algorithm}
+\caption{Online Graph Coloring-Algorithmus mit Advice}
+\label{algo.advice}
+\begin{algorithmic}
+\Require
+	\State Der präsentierte Knoten $v$,
+	\State Der bereits bekannte Graph $G' = (V', E')$,
+	\State Die bereits bekannte Färbung $f : V' \rightarrow C$,
+	\State Die maximale Anzahl erlaubter Farben $k$,
+	\State Das Orakel $\mathcal{O} : V \rightarrow \{0,1\}$
+\Ensure
+	\State Die Färbung für den präsentierten Knoten $f(v) \in C$
+\Statex
+
+\State $C' \gets \{1, \dots, k\}$
+\ForAll{$c \in C'$}
+\ForAll{$e \in E'$}
+	\State $\{w\} \gets e \cap v$
+	\If{$f(w) = c$}
+		\State $C' \gets C' - \{ f(w) \}$
+	\EndIf
+\EndFor
+\EndFor
+
+\Statex
+
+\If{$C' \ne \{k-1,k\}$}
+	\State $ f(v) \gets \min C'$
+\Else
+	\State $ f(v) \gets k-1+\mathcal{O}(v)$
+\EndIf
+
+\end{algorithmic}
+\end{algorithm}
+
+\section{Obere und untere Schranken für Advices}
+
+Es lassen sich folgende Aussagen machen:
+
+\begin{itemize}
+\item Um jeden bipartiten Graphen mit $n$ Knoten optimal färben zu können, sind höchstens $n-2$ Advices nötig. Die Begründung liegt darin, dass ein Algorithmus konstruiert werden kann, der folgendermassen funktioniert:
+
+\begin{enumerate}
+\item Der erste Knoten bekommt die Farbe $1$.
+\item Bei der Präsentation des zweiten Knotens wird das Orakel gefragt, ob jedem bei der Präsentation isolierten Knoten ebenfalls die Farbe $1$ zugeordnet werden soll. Nicht-isolierte Knoten bekommen die bezüglich des Nachbarknoten entgegengesetzte Farbe. Bei einer Bejahung dieser Frage beträgt die Anzahl Advices genau $1 \le n-2$.
+\item Falls das Orakel bei Schritt 2 verneint, wird es bei jedem isolierten Knoten nach der Farbe gefragt. Das Orakel würde die erste Frage aber nur verneinen, wenn es mindestens $2$ nicht isolierte Knoten gibt -- ansonsten wäre Optimalität auch noch gewährleistet, wenn die Farbe $1$ auf beiden Shores auftauchen würde. Also beträgt die Anzahl Advices höchstens $n-2$. \cite{bipartite}
+\end{enumerate}
+
+\item Um jeden bipartiten Graphen mit $n$ Knoten optimal färben zu können, sind mindestens $n-3$ Advices nötig. \cite{bipartite}
+
+\end{itemize}
+
 
 \bibliography{biblio}
 \bibliographystyle{plain}
 
-
+\listoffigures
+\listofalgorithms
 
 
 \end{document}

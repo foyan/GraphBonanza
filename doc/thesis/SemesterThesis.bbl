@@ -50,6 +50,11 @@ Georges Gonthier.
 \newblock {A computer-checked proof of the Four Colour Theorem}.
 \newblock 2005.
 
+\bibitem{gyarfas}
+A.~Gyárfás and J.~Lehel.
+\newblock On-line and first fit colorings of graphs.
+\newblock {\em Journal of Graph Theory}, 12(2):217--227, 1988.
+
 \bibitem{hopcroft}
 John~E. Hopcroft and Jeff~D. Ullman.
 \newblock {\em Introduction to Automata Theory, Languages, and Computation}.

@@ -5,10 +5,13 @@
 \contentsline {section}{\numberline {2.3}Das {\sc SkiRental}-Problem}{5}{section.2.3}
 \contentsline {section}{\numberline {2.4}Das Orakel}{7}{section.2.4}
 \contentsline {section}{\numberline {2.5}Online {\sc SimpleKnapsack} mit Advice}{9}{section.2.5}
-\contentsline {chapter}{\numberline {3}Online Graph Coloring von bipartiten Graphen}{11}{chapter.3}
+\contentsline {chapter}{\numberline {3}Online Coloring von bipartiten Graphen}{11}{chapter.3}
 \contentsline {section}{\numberline {3.1}Modelle von (bipartiten) Graphen}{11}{section.3.1}
 \contentsline {section}{\numberline {3.2}Zufallsgraphen}{13}{section.3.2}
 \contentsline {section}{\numberline {3.3}Generierung von Zufallsgraphen}{13}{section.3.3}
 \contentsline {section}{\numberline {3.4}Graph Coloring}{15}{section.3.4}
-\contentsline {section}{\numberline {3.5}Online Graph Coloring}{16}{section.3.5}
-\contentsline {chapter}{Literaturverzeichnis}{19}{chapter*.9}
+\contentsline {section}{\numberline {3.5}Online Graph Coloring: First Fit-Algorithmus}{16}{section.3.5}
+\contentsline {chapter}{\numberline {4}Online Coloring von bipartiten Graphen mit Advice}{22}{chapter.4}
+\contentsline {section}{\numberline {4.1}Online Coloring Algorithmus mit Advice}{22}{section.4.1}
+\contentsline {section}{\numberline {4.2}Obere und untere Schranken f\IeC {\"u}r Advices}{22}{section.4.2}
+\contentsline {chapter}{Literaturverzeichnis}{25}{chapter*.12}
