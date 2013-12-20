@@ -1353,7 +1353,7 @@ Dies führt zum Algorithmus~\ref{algo.advice}, welcher wie der First Fit-Algorit
 
 \section{Obere und untere Schranken für Advices}
 
-Es lassen sich folgende Aussagen machen:
+Bezüglich den Schranken für Advices lassen sich folgende Aussagen machen:
 
 \begin{itemize}
 \item Um jeden bipartiten Graphen mit $n$ Knoten optimal färben zu können, sind höchstens $n-2$ Advices nötig. Die Begründung liegt darin, dass ein Algorithmus konstruiert werden kann, der folgendermassen funktioniert:
@@ -1366,7 +1366,17 @@ Es lassen sich folgende Aussagen machen:
 
 \item Um jeden bipartiten Graphen mit $n$ Knoten optimal färben zu können, sind mindestens $n-3$ Advices nötig. \cite{bipartite}
 
+\item Um jeden bipartiten Graphen mit $n$ Knoten mit höchstens $k > 2$ Farben färben zu können, sind höchstens
+$\frac{n} { \sqrt{2^{k-1}}}$
+Advices nötig \cite{bipartite}. Dies ergibt sich aus der Beobachtung, dass die Befragung des Orakels, ob die Farbe $k$ oder $k-1$ zugewiesen werden soll, nur jeweils notwendig wird, wenn der aktuell präsentierte Knoten $k-2$ Kanten zu Nachbarn mit genau den Farben $\{1,\dots, k-2\}$ hat. Durch Induktion lässt sich dann zeigen, dass dies nur für jeden $ \sqrt{2^{k-1}}$ten aller $n$ Knoten der Fall ist \cite{bipartite, trotter}.
+
+
 \end{itemize}
+
+
+\section{Experimente}
+
+Mit Hilfe des zu dieser Arbeit gehörenden Programms {\tt GraphBonanza} werden wir nun einige Experimente durchführen.
 
 
 \bibliography{biblio}

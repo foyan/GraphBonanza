@@ -14,4 +14,5 @@
 \contentsline {chapter}{\numberline {4}Online Coloring von bipartiten Graphen mit Advice}{22}{chapter.4}
 \contentsline {section}{\numberline {4.1}Online Coloring Algorithmus mit Advice}{22}{section.4.1}
 \contentsline {section}{\numberline {4.2}Obere und untere Schranken f\IeC {\"u}r Advices}{22}{section.4.2}
+\contentsline {section}{\numberline {4.3}Experimente}{24}{section.4.3}
 \contentsline {chapter}{Literaturverzeichnis}{25}{chapter*.12}

@@ -6,4 +6,6 @@ function App () {
 	
 	this.playground = new Playground(this);
 	
+	this.looper = new Looper(this.builder);
+	
 }

@@ -60,6 +60,11 @@ John~E. Hopcroft and Jeff~D. Ullman.
 \newblock {\em Introduction to Automata Theory, Languages, and Computation}.
 \newblock Addison-Wesley Publishing Company, 1979.
 
+\bibitem{trotter}
+H.A. Kierstead and W.T. Trotter.
+\newblock On-line graph coloring.
+\newblock {\em On-line Algorithms}, 7:88 -- 92, 1992.
+
 \bibitem{lovasz}
 László Lovász, Michael Saks, and W.T. Trotter.
 \newblock An on-line graph coloring algorithm with sublinear performance ratio.

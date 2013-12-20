@@ -15,7 +15,7 @@ function GraphBuilder() {
 		var shore1 = shores[0];
 		var shore2 = shores[1];
 		
-		console.log(": Starting verteces...");
+		console.log(": Starting vertices...");
 
 		var shore1Count = Math.round(self.vertexCount() * self.shoreBalance());
 		var vertexCount = self.vertexCount();
@@ -27,7 +27,7 @@ function GraphBuilder() {
 			graph.verteces.push(vertex);
 		}
 
-		console.log(": Done verteces. Starting edges...");
+		console.log(": Done vertices. Starting edges...");
 
 		var edgeCount = shore1Count * (vertexCount - shore1Count);
 		var prob = self.probability();

@@ -20,6 +20,7 @@
 		<script type="text/javascript" src="js/Edge.js"></script>
 		<script type="text/javascript" src="js/UniformDistribution.js"></script>
 		<script type="text/javascript" src="js/GraphBuilder.js"></script>
+		<script type="text/javascript" src="js/Looper.js"></script>
 		<script type="text/javascript" src="js/OnlineVertex.js"></script>
 		<script type="text/javascript" src="js/OnlineProblem.js"></script>
 		<script type="text/javascript" src="js/Oracle.js"></script>
@@ -40,7 +41,7 @@
 				<table>
 					<tr>
 						<td colspan="2">
-							<strong>Gilbert model</strong>
+							<strong>G(n, p) model</strong>
 						</td>
 					</tr>
 					<tr>
@@ -101,6 +102,27 @@
 						<td>Theorical upper bound:</td>
 						<td data-bind="text: upperAdviceBound"></td>
 					</tr>
+				</table>
+			</div>
+			
+			<div class="header-part control">
+				<table>
+					<tr>
+						<td colspan="2">
+							<strong>Looper</strong>
+						</td>
+					</tr>
+					<tr>
+						<td># loops:</td>
+						<td><input type="text" class="text ui-widget-content ui-corner-all" data-bind="value: looper.count" /></td>
+					</tr>
+					<!-- ko foreach: looper.experiments -->
+					<tr>
+						<td colspan="2">
+							<a href="#" data-bind="text: name, click: function () { $parent.looper.loop($data.runner); }"></a>
+						</td>
+					</tr>
+					<!-- /ko -->
 				</table>
 			</div>
 
