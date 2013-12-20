@@ -15,8 +15,6 @@ function GraphBuilder() {
 		var shore1 = shores[0];
 		var shore2 = shores[1];
 		
-		console.log(": Starting vertices...");
-
 		var shore1Count = Math.round(self.vertexCount() * self.shoreBalance());
 		var vertexCount = self.vertexCount();
 		for (var i = 0; i < vertexCount; i++) {
@@ -26,8 +24,6 @@ function GraphBuilder() {
 			shores[vertex.shore].push(vertex);
 			graph.verteces.push(vertex);
 		}
-
-		console.log(": Done vertices. Starting edges...");
 
 		var edgeCount = shore1Count * (vertexCount - shore1Count);
 		var prob = self.probability();
@@ -50,13 +46,11 @@ function GraphBuilder() {
 			}
 		}
 
-		console.log(": Done edges. Shuffling...");
 		self.shuffle(graph.verteces);
 		
 		for (var i = 0; i < graph.verteces.length; i++) {
 			graph.verteces[i].index = i;
 		}
-		console.log(": Done shuffling.");
 
 		return graph;
 

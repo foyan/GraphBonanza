@@ -23,8 +23,9 @@ function Looper(builder) {
 		if (self.runCount < self.count()) {
 			console.log(self.runCount);
 			self.runner();
+			console.log("Done " + self.runCount);
 			self.runCount++;
-			setTimeout(self.loop_, 5);
+			setTimeout(self.loop_, 0);
 		} else {
 			console.log("Ciao");
 		}
