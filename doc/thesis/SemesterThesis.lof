@@ -12,3 +12,11 @@
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Die Folge $T_1, \dots , T_6$\relax }}{19}{figure.caption.10}
 \contentsline {figure}{\numberline {3.8}{\ignorespaces First Fit auf $T_1, \dots , T_6$\relax }}{21}{figure.caption.11}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces FF gegen AmA f\IeC {\"u}r 10000 Instanzen von $G(1000, p)$, I\relax }}{26}{figure.caption.15}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$p = 0.01$}}}{26}{subfigure.2.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$p = 0.02$}}}{26}{subfigure.2.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$p = 0.05$}}}{26}{subfigure.2.3}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces FF gegen AmA f\IeC {\"u}r 10000 Instanzen von $G(1000, p)$, II\relax }}{27}{figure.caption.16}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$p = 0.1$}}}{27}{subfigure.3.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$p = 0.2$}}}{27}{subfigure.3.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$p = 0.3$}}}{27}{subfigure.3.3}

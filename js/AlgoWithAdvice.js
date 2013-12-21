@@ -20,7 +20,7 @@ function AlgoWithAdvice(maxColorCount, adviceCount, oracle) {
 		}
 		
 		var gap = -1;
-		for (var i = 0; i < self.maxColorCount(); i++) {
+		for (var i = 0; i < self.maxColorCount; i++) {
 			if (!r["_" + i]) {
 				gap = i;
 				break;
@@ -29,23 +29,17 @@ function AlgoWithAdvice(maxColorCount, adviceCount, oracle) {
 		
 		var c;
 		
-		if (gap < self.maxColorCount()-2) {
+		if (gap < self.maxColorCount-2) {
 			c = gap;
-			console.log("#" + vertex.index + ": gap " + gap + " < k-1 => " + c);
-		} else if (gap == self.maxColorCount() - 2 && r["_" + (self.maxColorCount() - 1)]) {
+		} else if (gap == self.maxColorCount - 2 && r["_" + (self.maxColorCount - 1)]) {
 			c = gap;
-			console.log("#" + vertex.index + ": gap " + gap + " = k-1, k in friends => " + c);
-		} else if (gap == self.maxColorCount() - 1 && r["_" + (self.maxColorCount() - 2)]) {
+		} else if (gap == self.maxColorCount - 1 && r["_" + (self.maxColorCount - 2)]) {
 			c = gap;
-			console.log("#" + vertex.index + ": gap " + gap + " = k, k-1 in friends => " + c);
 		} else {
 			self.adviceCount(self.adviceCount()+1);
-			c = self.maxColorCount() - 2 + self.oracle.ask(vertex);
-			console.log("#" + vertex.index + ": gap " + gap + " = ?, asking for advice => " + c);
+			c = self.maxColorCount - 2 + self.oracle.ask(vertex);
 		}
-		
-		console.log("#" + vertex.index + ": " + c);
-		
+				
 		self.usedColors[vertex.index] = c;
 		return c;
 				

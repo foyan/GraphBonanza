@@ -5,7 +5,7 @@ body {
 	font-size: 9pt;
 }
 
-#content {
+#content, #content2 {
 	border-radius: 6px;
 	background: #222;
 	width: 99%;
@@ -43,3 +43,10 @@ body {
 	left: 0;
 	height: 100%;
 }
+
+.counter {
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+

@@ -90,7 +90,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<a href="#" data-bind="click: function () { $data.solve(new AlgoWithAdvice(maxColorCount, adviceCount, new Oracle($data.graph()))); $data.redraw();}, enabled: graph() != null">Solve</a>
+							<a href="#" data-bind="click: function () { $data.solve(new AlgoWithAdvice(maxColorCount(), adviceCount, new Oracle($data.graph()))); $data.redraw();}, enabled: graph() != null">Solve</a>
 						</td>
 					</tr>
 					<tr>
@@ -129,7 +129,7 @@
 			
 		</div>
 		
-		<div id="content" data-bind="with: playground">
+ 		<div id="content" data-bind="with: playground" style="display:none;">
 			<a href="#" data-bind="click: function () { $data.buildGraph(); $data.drawGraph();}, text: 'New graph'"></a>
 			<a href="#" data-bind="click: function () { $data.arrangeShores(); $data.redraw();}, text: 'Arrange on shores'"></a>
 
@@ -141,7 +141,32 @@
 				
 			</div>
 		</div>
-		
+ 		
+ 		<div id="content2" data-bind="with: looper">
+ 			<div class="counter" data-bind="text: runCount"></div>
+ 			
+ 			<table>
+ 				<thead>
+ 					<tr>
+ 						<td>FF: # colors</td>
+ 						<td># samples</td>
+ 						<td>AA: min advices</td>
+ 						<td>AA: avg advices</td>
+ 						<td>AA: max advices</td>
+ 					</tr>
+ 				</thead>
+ 				<tbody data-bind="foreach: results">
+ 					<tr>
+ 						<td data-bind="text: colors"></td>
+ 						<td data-bind="text: samples"></td>
+ 						<td data-bind="text: minAdvices"></td>
+ 						<td data-bind="text: avgAdvices"></td>
+ 						<td data-bind="text: maxAdvices"></td>
+ 					</tr>
+ 				</tbody>
+ 			</table>
+		</div>
+
 	</body>
 	
 </html>

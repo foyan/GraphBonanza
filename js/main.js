@@ -7,5 +7,7 @@ $(function () {
 	ko.applyBindings(app, body);
 
 	$("a").button();
+	
+	window.app = app;
 
 });
