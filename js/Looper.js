@@ -16,7 +16,7 @@ function Looper(app) {
 		var builder = new GraphBuilder();
 		var n = (self.runCount() % 100) * 10;
 		builder.vertexCount(n);
-		builder.probability(0.1);
+		builder.probability(0.01);
 
 		var graph = builder.build();
 				
@@ -38,7 +38,7 @@ function Looper(app) {
 		var result = self.results()[benchmark];
 			
 		var adviceCount = ko.observable(0);
-		var aa = new AlgoWithAdvice(3, adviceCount, new Oracle(graph));
+		var aa = new AlgoWithAdvice(2, adviceCount, new Oracle(graph));
 		
 		var problem2 = new OnlineProblem(graph, aa);
 		
