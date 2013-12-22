@@ -19,6 +19,7 @@
 		<script type="text/javascript" src="js/Vertex.js"></script>
 		<script type="text/javascript" src="js/UniformDistribution.js"></script>
 		<script type="text/javascript" src="js/GraphBuilder.js"></script>
+		<script type="text/javascript" src="js/AdversaryBuilder.js"></script>
 		<script type="text/javascript" src="js/Looper.js"></script>
 		<script type="text/javascript" src="js/OnlineVertex.js"></script>
 		<script type="text/javascript" src="js/OnlineProblem.js"></script>
@@ -35,6 +36,22 @@
 		<div id="header">
 		
 			<div class="header-part title">Graph<br/>Bonanza.</div>
+			
+			<div class="header-part control">
+				<table>
+					<tr>
+						<td>
+							<strong>Show</strong>
+						</td>
+					</tr>
+					<tr>
+						<td><a href="#" data-bind="btn: '', click: function () {$root.show($root.showPlayground);}">Playground</a></td>
+					</tr>
+					<tr>
+						<td><a href="#" data-bind="btn: '', click: function () {$root.show($root.showLooperResults);}">Looper results</a></td>
+					</tr>
+				</table>
+			</div>
 			
 			<div class="header-part control">
 				<table>
@@ -67,7 +84,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<a href="#" data-bind="click: function () { $data.solve(new FirstFitAlgo()); $data.redraw();}, enabled: graph() != null">Solve</a>
+							<a href="#" data-bind="btn: '', click: function () { $data.solve(new FirstFitAlgo()); $data.redraw();}, enabled: graph() != null">Solve</a>
 						</td>
 					</tr>
 					<tr>
@@ -90,7 +107,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<a href="#" data-bind="click: function () { $data.solve(new AlgoWithAdvice(maxColorCount(), adviceCount, new Oracle($data.graph()))); $data.redraw();}, enabled: graph() != null">Solve</a>
+							<a href="#" data-bind="btn: '', click: function () { $data.solve(new AlgoWithAdvice(maxColorCount(), adviceCount, new Oracle($data.graph()))); $data.redraw();}, enabled: graph() != null">Solve</a>
 						</td>
 					</tr>
 					<tr>
@@ -118,7 +135,7 @@
 					<!-- ko foreach: looper.experiments -->
 					<tr>
 						<td colspan="2">
-							<a href="#" data-bind="text: name, click: function () { $parent.looper.loop($data.runner); }"></a>
+							<a href="#" data-bind="btn: '', text: name, click: function () { $parent.looper.loop($data.runner); }"></a>
 						</td>
 					</tr>
 					<!-- /ko -->
@@ -129,20 +146,20 @@
 			
 		</div>
 		
- 		<div id="content" data-bind="with: playground" style="display:none;">
-			<a href="#" data-bind="click: function () { $data.buildGraph(); $data.drawGraph();}, text: 'New graph'"></a>
-			<a href="#" data-bind="click: function () { $data.arrangeShores(); $data.redraw();}, text: 'Arrange on shores'"></a>
+ 		<div id="content" data-bind="with: playground, style: {display: showPlayground() ? 'block' : 'none'}">
+			<a href="#" data-bind="btn: '', click: function () { $data.buildGraph(); $data.drawGraph();}, text: 'New graph'"></a>
+			<a href="#" data-bind="btn: '', click: function () { $data.arrangeShores(); $data.redraw();}, text: 'Arrange on shores'"></a>
 
-			<a href="#" data-bind="click: function () { $data.changeWindow(-100); $data.drawGraph();}, text: '<<'"></a>
-			<a href="#" data-bind="click: function () { }, text: windowDisplay"></a>
-			<a href="#" data-bind="click: function () { $data.changeWindow(+100); $data.drawGraph();}, text: '>>'"></a>
+			<a href="#" data-bind="btn: '', click: function () { $data.changeWindow(-100); $data.drawGraph();}, text: '<<'"></a>
+			<a href="#" data-bind="btn: '', click: function () { }, text: windowDisplay"></a>
+			<a href="#" data-bind="btn: '', click: function () { $data.changeWindow(+100); $data.drawGraph();}, text: '>>'"></a>
 
 			<div id="space" class="space">
 				
 			</div>
 		</div>
  		
- 		<div id="content2" data-bind="with: looper">
+ 		<div id="content2" data-bind="with: looper, visible: showLooperResults">
  			<div class="counter" data-bind="text: runCount"></div>
  			
  			<table>
@@ -153,18 +170,41 @@
  						<td>AA: min advices</td>
  						<td>AA: avg advices</td>
  						<td>AA: max advices</td>
+ 						<td>AA: Upper bound</td>
+ 						<td>Bad hits</td>
  					</tr>
  				</thead>
  				<tbody data-bind="foreach: results">
+ 					<!-- ko if: $index() > 1 -->
  					<tr>
  						<td data-bind="text: colors"></td>
  						<td data-bind="text: samples"></td>
  						<td data-bind="text: minAdvices"></td>
  						<td data-bind="text: avgAdvices"></td>
  						<td data-bind="text: maxAdvices"></td>
+ 						<td data-bind="text: upperBound"></td>
+ 						<td>
+ 							<!-- ko foreach:badHits -->
+ 							<a href="#" data-bind="btn: '', text: name, click: function () {$parents[1].sendToPlayground($data);}"></a>
+ 							<!-- /ko -->
+ 						</td>
  					</tr>
+ 					<!-- /ko -->
  				</tbody>
  			</table>
+ 			
+ 			<div>
+ 				<table>
+ 					<tr>
+	 					<td>Average # colors</td>
+	 					<td data-bind="text: avgColorsDisplay"></td>
+ 					</tr>
+ 					<tr>
+	 					<td>Average # advice</td>
+	 					<td data-bind="text: avgAdvicesDisplay"></td>
+ 					</tr>
+ 				</table>
+ 			</div>
 		</div>
 
 	</body>

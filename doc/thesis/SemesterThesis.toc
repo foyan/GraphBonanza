@@ -1,19 +1,28 @@
-\contentsline {chapter}{\numberline {1}Einleitung}{3}{chapter.1}
-\contentsline {chapter}{\numberline {2}Advice Complexity}{4}{chapter.2}
-\contentsline {section}{\numberline {2.1}Online- vs. Offline-Probleme}{4}{section.2.1}
-\contentsline {section}{\numberline {2.2}Competitive Ratio}{4}{section.2.2}
-\contentsline {section}{\numberline {2.3}Das {\sc SkiRental}-Problem}{5}{section.2.3}
-\contentsline {section}{\numberline {2.4}Das Orakel}{7}{section.2.4}
-\contentsline {section}{\numberline {2.5}Online {\sc SimpleKnapsack} mit Advice}{9}{section.2.5}
-\contentsline {chapter}{\numberline {3}Online Coloring von bipartiten Graphen}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}Modelle von (bipartiten) Graphen}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Zufallsgraphen}{13}{section.3.2}
-\contentsline {section}{\numberline {3.3}Generierung von Zufallsgraphen}{13}{section.3.3}
-\contentsline {section}{\numberline {3.4}Graph Coloring}{15}{section.3.4}
-\contentsline {section}{\numberline {3.5}Online Graph Coloring: First Fit-Algorithmus}{16}{section.3.5}
-\contentsline {chapter}{\numberline {4}Online Coloring von bipartiten Graphen mit Advice}{22}{chapter.4}
-\contentsline {section}{\numberline {4.1}Online Coloring Algorithmus mit Advice}{22}{section.4.1}
-\contentsline {section}{\numberline {4.2}Obere und untere Schranken f\IeC {\"u}r Advices}{22}{section.4.2}
-\contentsline {section}{\numberline {4.3}Experimente}{24}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Anzahl Advices f\IeC {\"u}r selbe Competitive Ratio wie First Fit}{24}{subsection.4.3.1}
-\contentsline {chapter}{Literaturverzeichnis}{29}{chapter*.17}
+\contentsline {chapter}{\numberline {1}Einleitung}{4}{chapter.1}
+\contentsline {chapter}{\numberline {2}Advice Complexity}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Online- vs. Offline-Probleme}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Competitive Ratio}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}Das {\sc SkiRental}-Problem}{6}{section.2.3}
+\contentsline {section}{\numberline {2.4}Das Orakel}{8}{section.2.4}
+\contentsline {section}{\numberline {2.5}Online {\sc SimpleKnapsack} mit Advice}{10}{section.2.5}
+\contentsline {chapter}{\numberline {3}Online Coloring von bipartiten Graphen}{12}{chapter.3}
+\contentsline {section}{\numberline {3.1}Modelle von (bipartiten) Graphen}{12}{section.3.1}
+\contentsline {section}{\numberline {3.2}Zufallsgraphen}{14}{section.3.2}
+\contentsline {section}{\numberline {3.3}Generierung von Zufallsgraphen}{14}{section.3.3}
+\contentsline {section}{\numberline {3.4}Graph Coloring}{16}{section.3.4}
+\contentsline {section}{\numberline {3.5}Online Graph Coloring: First Fit-Algorithmus}{17}{section.3.5}
+\contentsline {chapter}{\numberline {4}Online Coloring von bipartiten Graphen mit Advice}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}Online Coloring Algorithmus mit Advice}{23}{section.4.1}
+\contentsline {section}{\numberline {4.2}Obere und untere Schranken f\IeC {\"u}r Advices}{23}{section.4.2}
+\contentsline {section}{\numberline {4.3}Experimente}{25}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Anzahl Advices f\IeC {\"u}r selbe Competitive Ratio wie First Fit}{25}{subsection.4.3.1}
+\contentsline {chapter}{\numberline {5}Kommentierung der Implementation des Programms {\tt GraphBonanza}}{31}{chapter.5}
+\contentsline {section}{\numberline {5.1}Anforderungen}{31}{section.5.1}
+\contentsline {section}{\numberline {5.2}Umfeld, Architektur und verwendete Bibliotheken}{31}{section.5.2}
+\contentsline {section}{\numberline {5.3}Die {\tt GraphBuilder}-Klasse}{31}{section.5.3}
+\contentsline {section}{\numberline {5.4}Die {\tt FirstFitAlgo}-Klasse}{31}{section.5.4}
+\contentsline {section}{\numberline {5.5}Die {\tt AlgoWithAdvice}-Klasse}{31}{section.5.5}
+\contentsline {section}{\numberline {5.6}Die {\tt Looper}-Klasse}{31}{section.5.6}
+\contentsline {section}{\numberline {5.7}User Interface}{32}{section.5.7}
+\contentsline {section}{\numberline {5.8}Caveats}{32}{section.5.8}
+\contentsline {chapter}{Literaturverzeichnis}{33}{chapter*.18}

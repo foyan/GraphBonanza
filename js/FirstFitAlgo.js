@@ -24,7 +24,7 @@ function FirstFitAlgo() {
 		
 		self.usedColors[vertex.index] = c;
 		
-		return c;
+		return {color: c, asked: false};
 
 	}
 	

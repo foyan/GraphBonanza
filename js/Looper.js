@@ -1,4 +1,4 @@
-function Looper(builder) {
+function Looper(app) {
 
 	var self = this;
 	
@@ -7,11 +7,14 @@ function Looper(builder) {
 	this.runCount = ko.observable(0);
 	this.runner = null;
 	
-	this.builder = builder;
+	this.builder = app.builder;
+	
+	this.app = app;
 	
 	this.firstFitVersusAdvice = function () {
-		var graph = self.builder.build();
 		
+		var graph = self.builder.build();
+				
 		var ff = new FirstFitAlgo();
 		var problem = new OnlineProblem(graph, ff);
 		
@@ -23,13 +26,17 @@ function Looper(builder) {
 		
 		var benchmark = problem.colorCount;
 		
+		var theorUpperBound = graph.verteces.length / Math.sqrt(Math.pow(2, benchmark - 1));
+
 		for (var i = self.results().length; i <= benchmark; i++) {
 			var res = {
 				colors: i,
 				samples: ko.observable(0),
 				minAdvices: ko.observable(9999),
 				maxAdvices: ko.observable(-9999),
-				avgAdvices: ko.observable(0)
+				avgAdvices: ko.observable(0),
+				upperBound: Math.floor(graph.verteces.length / Math.sqrt(Math.pow(2, i - 1))),
+				badHits: ko.observableArray()
 			};
 			self.results.push(res);
 		}
@@ -55,15 +62,27 @@ function Looper(builder) {
 			result.maxAdvices(adviceCount());
 		}
 		
-		result.avgAdvices(Math.ceil((result.avgAdvices() * result.samples() + adviceCount()) / (result.samples() + 1)));
+		if (adviceCount() > theorUpperBound && benchmark > 2) {
+			console.log(graph);
+			result.badHits.push({
+				graph: graph,
+				name: "#" + self.runCount()
+			});
+		}
+		
+		result.avgAdvices((result.avgAdvices() * result.samples() + adviceCount()) / (result.samples() + 1));
 
 		result.samples(result.samples()+1);
+		self.avgAdvices(self.avgAdvices() + adviceCount());
+		self.avgColors(self.avgColors() + benchmark);
 
 	}
 	
 	this.loop = function (runner) {
 		self.runCount(0);
 		self.results([]);
+		self.avgAdvices(0);
+		self.avgColors(0);
 		self.runner = runner;
 		self.loop_();
 	}
@@ -88,6 +107,22 @@ function Looper(builder) {
 	
 	this.results = ko.observableArray();
 	
+	this.avgAdvices = ko.observable(0);
 	
+	this.avgAdvicesDisplay = ko.computed(function () {
+		return self.runCount() > 0 ? self.avgAdvices() / self.runCount() : 0;
+	});
 	
+	this.avgColors = ko.observable(0);
+	
+	this.avgColorsDisplay = ko.computed(function () {
+		return self.runCount() > 0 ? self.avgColors() / self.runCount() : 0;
+	});
+	
+	this.sendToPlayground = function(graph) {
+		self.app.show(self.app.showPlayground);
+		self.app.playground.graph(graph.graph);
+		self.app.playground.drawGraph();
+	}
+
 }

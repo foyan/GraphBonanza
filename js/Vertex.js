@@ -10,4 +10,6 @@ function Vertex() {
 	
 	this.color = -1;
 	
+	this.asked = false;
+	
 }

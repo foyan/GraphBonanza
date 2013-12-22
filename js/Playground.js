@@ -10,16 +10,15 @@ function Playground(app) {
 	
 	this.colorCount = ko.observable(null);
 	
-	this.maxColorCount = ko.observable(4);
+	this.maxColorCount = ko.observable(3);
 	
 	this.adviceCount = ko.observable(0);
-		
 		
 	this.upperAdviceBound = ko.computed(function () {
 		if (!self.graph()) {
 			return 0;
 		}
-		return Math.ceil(self.graph().verteces.length / Math.sqrt(Math.pow(2, self.maxColorCount() - 1)));
+		return Math.floor(self.graph().verteces.length / Math.sqrt(Math.pow(2, self.maxColorCount() - 1)));
 	});
 		
 	this.wnd = {
@@ -42,6 +41,9 @@ function Playground(app) {
 		if (vertex.color == -1) {
 			return "white";
 		}
+		if (vertex.asked) {
+			return "red";
+		}
 		return self.colors[vertex.color % self.colors.length];
 	}
 
@@ -60,13 +62,13 @@ function Playground(app) {
 	}
 	
 	this.buildGraph = function () {
-		console.log(new Date() + ": Building...");
 		self.graph(self.app.builder.build());
-		console.log(new Date() + ": Built.");
 	}
 	
 	this.drawGraph = function () {
-		self.sigma = self.sigma || self.setupSigma($("#space").get(0));
+		if (!self.sigma || $("#space").children().length == 0) {
+			self.sigma = self.setupSigma($("#space").get(0));
+		}
 		self.sigma.emptyGraph();
 		
 		self.sigma.addNode("head", {
@@ -85,7 +87,7 @@ function Playground(app) {
 
 		self.graph().eachVertex(function (vertex) {
 			self.sigma.addNode("#" + vertex.index, {
-				label: "#" + vertex.index,
+				label: "#" + vertex.index + ". color: " + vertex.color + ", revealed friends: " + vertex.revealedFriends,
 				x: vertex.index,
 				y: vertex.shore * 15,
 				assignedColor: vertex.color,
@@ -134,8 +136,8 @@ function Playground(app) {
 		self.graph().eachVertex(function (vertex) {
 			if (vertex.index >= self.wnd.start() && vertex.index < self.wnd.end()) {
 				self.sigma.iterNodes(function (node) {
-					node.color = self.colors[vertex.color % self.colors.length];
-					node.label = "#" + vertex.index + ". color: " + vertex.color + ", revealed friends: ";
+					node.color = self.getVertexColor(vertex);
+					node.label = "#" + vertex.index + ". color: " + vertex.color + ", revealed friends: " + vertex.revealedFriends;
 					node.assignedColor = vertex.color;
 				}, ["#" + vertex.index]);
 			}
@@ -158,8 +160,9 @@ function Playground(app) {
 	
 	this.arrangeShores = function () {
 		self.sigma.iterNodes(function (node) {
-			if (node.label != "Head" && node.label != "Tail")
-			node.y = node.attr.assignedColor * 20 / self.colorCount();
+			if (node.label != "Head" && node.label != "Tail") {
+				node.y = node.attr.assignedColor * 20 / self.colorCount();
+			}
 		});	
 	}
 	

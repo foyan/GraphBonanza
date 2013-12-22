@@ -1,9 +1,10 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {algorithm}{\numberline {1}{\ignorespaces Ein naiver Zufallsgraphen-Generator\relax }}{14}{algorithm.1}
-\contentsline {algorithm}{\numberline {2}{\ignorespaces Ein umgeformter naiver Zufallsgraphen-Generator\relax }}{15}{algorithm.2}
-\contentsline {algorithm}{\numberline {3}{\ignorespaces Ein Zufallsgraphen-Generator mit Edge Skipping\relax }}{16}{algorithm.3}
-\contentsline {algorithm}{\numberline {4}{\ignorespaces First Fit-Algorithmus f\IeC {\"u}r Online Graph Coloring\relax }}{17}{algorithm.4}
+\contentsline {algorithm}{\numberline {1}{\ignorespaces Ein naiver Zufallsgraphen-Generator\relax }}{15}{algorithm.1}
+\contentsline {algorithm}{\numberline {2}{\ignorespaces Ein umgeformter naiver Zufallsgraphen-Generator\relax }}{16}{algorithm.2}
+\contentsline {algorithm}{\numberline {3}{\ignorespaces Ein Zufallsgraphen-Generator mit Edge Skipping\relax }}{17}{algorithm.3}
+\contentsline {algorithm}{\numberline {4}{\ignorespaces First Fit-Algorithmus f\IeC {\"u}r Online Graph Coloring\relax }}{18}{algorithm.4}
 \addvspace {10\p@ }
-\contentsline {algorithm}{\numberline {5}{\ignorespaces Online Graph Coloring-Algorithmus mit Advice\relax }}{23}{algorithm.5}
+\contentsline {algorithm}{\numberline {5}{\ignorespaces Online Graph Coloring-Algorithmus mit Advice\relax }}{24}{algorithm.5}
+\addvspace {10\p@ }

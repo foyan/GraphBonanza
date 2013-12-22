@@ -1,22 +1,27 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Verlauf von L\IeC {\"o}sung und Optimum f\IeC {\"u}r SkiRental\relax }}{6}{figure.caption.2}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Verlauf der Competitive Ratio f\IeC {\"u}r SkiRental\relax }}{7}{figure.caption.3}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Verlauf von L\IeC {\"o}sung und Optimum f\IeC {\"u}r SkiRental\relax }}{7}{figure.caption.2}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Verlauf der Competitive Ratio f\IeC {\"u}r SkiRental\relax }}{8}{figure.caption.3}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Ein Graph\relax }}{12}{figure.caption.4}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Ein bipartiter Graph\relax }}{12}{figure.caption.5}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Verteilung der Auftretenswahrscheinlichkeit eines Zufallsgraphen\relax }}{13}{figure.caption.6}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Nicht optimal f\IeC {\"a}rbbarer bipartiter Graph\relax }}{18}{figure.caption.7}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Optimal gef\IeC {\"a}rbter bipartiter Graph\relax }}{18}{figure.caption.8}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Ein Baum\relax }}{19}{figure.caption.9}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Die Folge $T_1, \dots , T_6$\relax }}{19}{figure.caption.10}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces First Fit auf $T_1, \dots , T_6$\relax }}{21}{figure.caption.11}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Ein Graph\relax }}{13}{figure.caption.4}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Ein bipartiter Graph\relax }}{13}{figure.caption.5}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Verteilung der Auftretenswahrscheinlichkeit eines Zufallsgraphen\relax }}{14}{figure.caption.6}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Nicht optimal f\IeC {\"a}rbbarer bipartiter Graph\relax }}{19}{figure.caption.7}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Optimal gef\IeC {\"a}rbter bipartiter Graph\relax }}{19}{figure.caption.8}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Ein Baum\relax }}{20}{figure.caption.9}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Die Folge $T_1, \dots , T_6$\relax }}{20}{figure.caption.10}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces First Fit auf $T_1, \dots , T_6$\relax }}{22}{figure.caption.11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces FF gegen AmA f\IeC {\"u}r 10000 Instanzen von $G(1000, p)$, I\relax }}{26}{figure.caption.15}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$p = 0.01$}}}{26}{subfigure.2.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$p = 0.02$}}}{26}{subfigure.2.2}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$p = 0.05$}}}{26}{subfigure.2.3}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces FF gegen AmA f\IeC {\"u}r 10000 Instanzen von $G(1000, p)$, II\relax }}{27}{figure.caption.16}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$p = 0.1$}}}{27}{subfigure.3.1}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$p = 0.2$}}}{27}{subfigure.3.2}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$p = 0.3$}}}{27}{subfigure.3.3}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces {\tt {FF}} gegen {\tt {AA}} f\IeC {\"u}r 10000 Instanzen von $G(1000, p)$, I\relax }}{27}{figure.caption.15}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$p = 0.01$}}}{27}{subfigure.2.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$p = 0.02$}}}{27}{subfigure.2.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$p = 0.05$}}}{27}{subfigure.2.3}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces {\tt {FF}} gegen {\tt {AA}} f\IeC {\"u}r 10000 Instanzen von $G(1000, p)$, II\relax }}{28}{figure.caption.16}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$p = 0.1$}}}{28}{subfigure.3.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$p = 0.2$}}}{28}{subfigure.3.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$p = 0.3$}}}{28}{subfigure.3.3}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces {\tt {FF}} gegen {\tt {AA}} f\IeC {\"u}r 10000 Instanzen von $G(1000, p)$, III\relax }}{29}{figure.caption.17}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$p = 0.4$}}}{29}{subfigure.4.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$p = 0.5$}}}{29}{subfigure.4.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {$p = 0.6$}}}{29}{subfigure.4.3}
+\addvspace {10\p@ }
