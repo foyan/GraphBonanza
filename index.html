@@ -108,6 +108,7 @@
 					<tr>
 						<td colspan="2">
 							<a href="#" data-bind="btn: '', click: function () { $data.solve(new AlgoWithAdvice(maxColorCount(), adviceCount, new Oracle($data.graph()))); $data.redraw();}, enabled: graph() != null">Solve</a>
+							<a href="#" data-bind="btn: '', click: function () { var ad = new AdversaryBuilder(); var gr = ad.build(app.builder.vertexCount(), maxColorCount()); graph(gr); drawGraph(); }">Build adversary</a>
 						</td>
 					</tr>
 					<tr>
