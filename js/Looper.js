@@ -11,6 +11,59 @@ function Looper(app) {
 	
 	this.app = app;
 	
+	this.optimalVersusAdvice = function () {
+
+		var builder = new GraphBuilder();
+		var n = (self.runCount() % 100) * 10;
+		builder.vertexCount(n);
+		builder.probability(0.1);
+
+		var graph = builder.build();
+				
+		var benchmark = n / 10;
+		
+		for (var i = self.results().length; i <= benchmark; i++) {
+			var res = {
+				colors: i,
+				samples: ko.observable(0),
+				minAdvices: ko.observable(9999),
+				maxAdvices: ko.observable(-9999),
+				avgAdvices: ko.observable(0),
+				upperBound: 0,
+				badHits: ko.observableArray()
+			};
+			self.results.push(res);
+		}
+		
+		var result = self.results()[benchmark];
+			
+		var adviceCount = ko.observable(0);
+		var aa = new AlgoWithAdvice(3, adviceCount, new Oracle(graph));
+		
+		var problem2 = new OnlineProblem(graph, aa);
+		
+		problem2.start();
+		
+		while (!problem2.done()) {
+			problem2.step();
+		}
+		
+		if (result.minAdvices() > adviceCount()) {
+			result.minAdvices(adviceCount());
+		}
+		if (result.maxAdvices() < adviceCount()) {
+			result.maxAdvices(adviceCount());
+		}
+		
+		result.avgAdvices((result.avgAdvices() * result.samples() + adviceCount()) / (result.samples() + 1));
+
+		result.samples(result.samples()+1);
+		self.avgAdvices(self.avgAdvices() + adviceCount());
+		self.avgColors(self.avgColors() + benchmark);
+
+	}
+	
+	
 	this.firstFitVersusAdvice = function () {
 		
 		var graph = self.builder.build();
@@ -43,18 +96,24 @@ function Looper(app) {
 		
 		var result = self.results()[benchmark];
 				
-		
-		var adviceCount = ko.observable(0);
-		var aa = new AlgoWithAdvice(benchmark, adviceCount, new Oracle(graph));
-		
-		var problem2 = new OnlineProblem(graph, aa);
-		
-		problem2.start();
-		
-		while (!problem2.done()) {
-			problem2.step();
+		var k = benchmark;
+		var ac = theorUpperBound + 1;
+		while (ac > theorUpperBound) {
+			var adviceCount = ko.observable(0);
+			var aa = new AlgoWithAdvice(k, adviceCount, new Oracle(graph));
+			
+			var problem2 = new OnlineProblem(graph, aa);
+			
+			problem2.start();
+			
+			while (!problem2.done()) {
+				problem2.step();
+			}
+			
+			ac = adviceCount();
+			k--;			
 		}
-		
+				
 		if (result.minAdvices() > adviceCount()) {
 			result.minAdvices(adviceCount());
 		}
@@ -97,9 +156,7 @@ function Looper(app) {
 		}
 	}
 	
-	this.optimalVersusAdvice = function () {
-	}
-	
+
 	this.experiments = [
 		{name: "FF vs. Advice", runner: this.firstFitVersusAdvice},
 		{name: "Opt vs. Advice", runner: this.optimalVersusAdvice}

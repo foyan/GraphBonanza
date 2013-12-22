@@ -22,20 +22,18 @@ function OnlineProblem(graph, algo) {
 		var vertex = self.graph.verteces[self.index];
 		var ov = new OnlineVertex(self.index);
 		
-		var friendString = "";
-		
+				
 		for (var i = 0; i < vertex.friends.length; i++) {
 			var friend = vertex.friends[i];
 			if (friend.index < self.index) {
 				ov.friendIndices.push(friend.index);
-				friendString += "#" + friend.index + " (" + friend.color + ")<br/>";
 			}
 		}
 		
 		var result = self.algo.assign(ov);
 		vertex.color = result.color;
 		vertex.asked = result.asked;
-		vertex.revealedFriends = friendString;
+		vertex.revealedFriends = "";
 
 		self.colorCount = Math.max(self.colorCount, vertex.color + 1);
 

@@ -13,16 +13,14 @@
 \BOOKMARK [1][-]{section.3.5}{Online Graph Coloring: First Fit-Algorithmus}{chapter.3}% 13
 \BOOKMARK [0][-]{chapter.4}{Online Coloring von bipartiten Graphen mit Advice}{}% 14
 \BOOKMARK [1][-]{section.4.1}{Online Coloring Algorithmus mit Advice}{chapter.4}% 15
-\BOOKMARK [1][-]{section.4.2}{Obere und untere Schranken f\374r Advices}{chapter.4}% 16
+\BOOKMARK [1][-]{section.4.2}{Obere und untere Schranken f\374r Advice Bits}{chapter.4}% 16
 \BOOKMARK [1][-]{section.4.3}{Experimente}{chapter.4}% 17
-\BOOKMARK [2][-]{subsection.4.3.1}{Anzahl Advices f\374r selbe Competitive Ratio wie First Fit}{section.4.3}% 18
-\BOOKMARK [0][-]{chapter.5}{Kommentierung der Implementation des Programms GraphBonanza}{}% 19
-\BOOKMARK [1][-]{section.5.1}{Anforderungen}{chapter.5}% 20
-\BOOKMARK [1][-]{section.5.2}{Umfeld, Architektur und verwendete Bibliotheken}{chapter.5}% 21
-\BOOKMARK [1][-]{section.5.3}{Die GraphBuilder-Klasse}{chapter.5}% 22
-\BOOKMARK [1][-]{section.5.4}{Die FirstFitAlgo-Klasse}{chapter.5}% 23
-\BOOKMARK [1][-]{section.5.5}{Die AlgoWithAdvice-Klasse}{chapter.5}% 24
-\BOOKMARK [1][-]{section.5.6}{Die Looper-Klasse}{chapter.5}% 25
-\BOOKMARK [1][-]{section.5.7}{User Interface}{chapter.5}% 26
-\BOOKMARK [1][-]{section.5.8}{Caveats}{chapter.5}% 27
-\BOOKMARK [0][-]{chapter*.18}{Literaturverzeichnis}{}% 28
+\BOOKMARK [2][-]{subsection.4.3.1}{Anzahl Advice Bits f\374r dieselbe Competitive Ratio wie First Fit}{section.4.3}% 18
+\BOOKMARK [2][-]{subsection.4.3.2}{Anzahl Advice Bits f\374r Optimalit\344t}{section.4.3}% 19
+\BOOKMARK [2][-]{subsection.4.3.3}{Anzahl Advice Bits f\374r k = 3}{section.4.3}% 20
+\BOOKMARK [1][-]{section.4.4}{Fazit der Experimente}{chapter.4}% 21
+\BOOKMARK [0][-]{chapter.5}{Kommentierung der Implementation des Programms GraphBonanza}{}% 22
+\BOOKMARK [1][-]{section.5.1}{Anforderungen}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.2}{Umfeld, Architektur und verwendete Bibliotheken}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.3}{Die GraphBuilder-Klasse}{chapter.5}% 25
+\BOOKMARK [0][-]{chapter*.26}{Literaturverzeichnis}{}% 26

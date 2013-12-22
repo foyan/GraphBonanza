@@ -171,8 +171,8 @@
  						<td>AA: min advices</td>
  						<td>AA: avg advices</td>
  						<td>AA: max advices</td>
- 						<td>AA: Upper bound</td>
- 						<td>Bad hits</td>
+ 						<!--<td>AA: Upper bound</td>-->
+ 						<!--<td>Bad hits</td>-->
  					</tr>
  				</thead>
  				<tbody data-bind="foreach: results">
@@ -183,12 +183,12 @@
  						<td data-bind="text: minAdvices"></td>
  						<td data-bind="text: avgAdvices"></td>
  						<td data-bind="text: maxAdvices"></td>
- 						<td data-bind="text: upperBound"></td>
- 						<td>
- 							<!-- ko foreach:badHits -->
+ 						<!--<td data-bind="text: upperBound"></td>-->
+ 						<!--<td>
+ 							 ko foreach:badHits
  							<a href="#" data-bind="btn: '', text: name, click: function () {$parents[1].sendToPlayground($data);}"></a>
- 							<!-- /ko -->
- 						</td>
+ 							 /ko
+ 						</td>-->
  					</tr>
  					<!-- /ko -->
  				</tbody>
